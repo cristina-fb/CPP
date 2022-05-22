@@ -1,14 +1,14 @@
 CXX = clang++
 CXXFLAGS = -Wall -Werror -Wextra
-NAME = megaphone
-SRC = megaphone.cpp
+NAME = brain
+SRC = main.cpp
 OBJ = $(SRC:.cpp=.o)
 
 $(NAME): $(OBJ)
-	$(CXX) $(CXXFLAGS) $^ -o $(NAME)
+	$(CXX) $(CXXFLAGS) $(OBJ) -o $(NAME)
 
 %.o: %.cpp
-	$(CXX) $(CXXFLAGS) -c $^
+	$(CXX) $(CXXFLAGS) -c $<
 
 clean:
 	rm -rf $(OBJ)
