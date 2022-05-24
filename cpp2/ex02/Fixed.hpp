@@ -21,19 +21,20 @@ class Fixed
 		float operator-( Fixed const & rhs);
 		float operator*( Fixed const & rhs);
 		float operator/( Fixed const & rhs);
-		Fixed & operator++( int );
+		float operator++( int );
 		Fixed & operator++( );
-		Fixed & operator--( int );
+		float operator--( int );
 		Fixed & operator--( );
-		const Fixed & operatormin( Fixed const &rhs);
 		
 		int getRawBits( void ) const;
 		void setRawBits( int const raw );
 		float toFloat( void ) const; 
 		int toInt( void ) const; 
 
-		/*static Fixed & min( Fixed & a, Fixed & b );
-		static Fixed & max( Fixed & a, Fixed & b );*/
+		static Fixed & min( Fixed & a, Fixed & b );
+		static Fixed & max( Fixed & a, Fixed & b );
+		static const Fixed & min( Fixed const & a, Fixed const & b );
+		static const Fixed & max( Fixed const & a, Fixed const & b );
 
 	private:
 		int _f_value;
