@@ -2,43 +2,24 @@
 #include "Point.hpp"
 #include "Fixed.hpp"
 
-Point::Point( void ): _x(Fixed()), _y(Fixed())
-{
-	std::cout << "Default Constructor Called" << std::endl;
-}
+Point::Point( void ): _x(Fixed()), _y(Fixed()){}
 
-Point::Point( Point const & src ):
-{
-	std::cout << "Copy Constructor Called" << std::endl;
-	*this = src;
-}
+Point::Point( Point const & src ){ /* *this = src;*/}
 
-Fixed::Point( Fixed const x, Fixed const y): _x(x), _y(y)
-{
-	std::cout << "Fixed Point Constructor Called" << std::endl;
-}
+Point::Point( Fixed const x, Fixed const y): _x(x), _y(y){}
 
-Point::~Point( void ):
-{
-	std::cout << "Destructor Called" << std::endl;
-}
+Point::~Point( void ){}
 
-Point & Point::operator=( Point & rhs ):
+Point & Point::operator=( Point & rhs )
 {
-	if(*this != rhs)
+	if(this != &rhs)
 	{
-		this->_x = rhs.getX();
-		this->_y = rhs.getY();
+		//this->_x = rhs.getX();
+		//this->_y = rhs.getY();
 	}
 	return *this;
 }
 
-Fixed & Point::getX( void ):
-{
-	return this->_x;
-}
+const Fixed & Point::getX( void ) { return this->_x; }
 
-Fixed & Point::getY( void ):
-{
-	return this->_y;
-}
+const Fixed & Point::getY( void ) { return this->_y; }

@@ -12,8 +12,8 @@ class Point
 
 		Point & operator=( Point & rhs );
 
-		Fixed & getX( void );
-		Fixed & getY( void );
+		const Fixed & getX( void );
+		const Fixed & getY( void );
 
 	private:
 		Fixed const _x;
