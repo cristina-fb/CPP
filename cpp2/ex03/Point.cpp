@@ -4,7 +4,7 @@
 
 Point::Point( void ): _x(Fixed()), _y(Fixed()){}
 
-Point::Point( Point const & src ){ /* *this = src;*/}
+Point::Point( Point & src ): _x(src.getX()), _y(src.getY()) {}
 
 Point::Point( Fixed const x, Fixed const y): _x(x), _y(y){}
 
@@ -14,12 +14,12 @@ Point & Point::operator=( Point & rhs )
 {
 	if(this != &rhs)
 	{
-		//this->_x = rhs.getX();
-		//this->_y = rhs.getY();
-	}
+		//this->_x = rhs.getY();
+		//this->_y = rhs.getX();
+	} 
 	return *this;
 }
 
-const Fixed & Point::getX( void ) { return this->_x; }
+Fixed const & Point::getX( void ) const { return this->_x; }
 
-const Fixed & Point::getY( void ) { return this->_y; }
+Fixed const & Point::getY( void ) const { return this->_y; }
