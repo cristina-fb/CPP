@@ -12,11 +12,11 @@ Point::~Point( void ){}
 
 Point & Point::operator=( Point & rhs )
 {
-	if(this != &rhs)
+	if (this != &rhs)
 	{
-		//this->_x = rhs.getY();
-		//this->_y = rhs.getX();
-	} 
+		const_cast<Fixed&>(this->_x) = rhs.getX();
+		const_cast<Fixed&>(this->_y) = rhs.getY();
+	}
 	return *this;
 }
 

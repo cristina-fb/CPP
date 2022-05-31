@@ -27,7 +27,9 @@ int Fixed::toInt( void ) const { return this->_f_value >> this->_f_bits; }
 Fixed & Fixed::operator=( Fixed const & rhs )
 {
 	if (this != &rhs)
+	{
 		this->_f_value = rhs.getRawBits();
+	}
 	return *this;
 }
 

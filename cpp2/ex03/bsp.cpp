@@ -66,6 +66,8 @@ bool bsp( Point const a, Point const b, Point const c, Point const point)
 				flag = getEquationParams(c, a, M, N);
 				res =  isInPlane(M, N, point, b, flag);
 				break;
+			default:
+				break;
 		}
 		if (!res)
 			return false;
