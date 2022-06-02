@@ -18,6 +18,11 @@ int main()
 	i->makeSound(); //will output the cat sound!
 	j->makeSound();
 	meta->makeSound();
-	k->makeSound(); //will output the animal sound;
+	k->makeSound(); //will output the wronganimal sound;
 	l->makeSound();
+	delete meta;
+	delete i;
+	delete j;
+	delete k;
+	delete l;
 }
