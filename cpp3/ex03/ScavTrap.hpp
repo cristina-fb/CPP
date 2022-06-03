@@ -2,7 +2,7 @@
 # define SCAVTRAP_CLASS_H
 # include "ClapTrap.hpp"
 
-class ScavTrap: virtual ClapTrap
+class ScavTrap: virtual public ClapTrap
 {
     public:
         ScavTrap( void );

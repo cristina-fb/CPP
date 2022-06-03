@@ -1,6 +1,7 @@
 #ifndef DIAMONDTRAP_CLASS_H
 # define DIAMONDTRAP_CLASS_H
 # include <iostream>
+# include "ClapTrap.hpp"
 # include "ScavTrap.hpp"
 # include "FragTrap.hpp"
 
@@ -15,7 +16,7 @@ class DiamondTrap: public ScavTrap, public FragTrap
 		DiamondTrap & operator=(DiamondTrap & rhs);
 
 		void whoAmI( void );
-		std::string getName( void );
+		std::string getDiamondName( void );
 
 	private:
         std::string _name;

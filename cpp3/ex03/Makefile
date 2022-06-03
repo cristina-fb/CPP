@@ -1,7 +1,7 @@
 CXX = clang++
 CXXFLAGS = -Wall -Werror -Wextra -std=c++98 -pedantic -Wshadow -Wno-shadow
-NAME = FragTrap
-SRC = ClapTrap.cpp ScavTrap.cpp FragTrap.cpp DiamondTrap.cpp main.cpp
+NAME = DiamondTrap
+SRC = ClapTrap.cpp ScavTrap.cpp FragTrap.cpp main.cpp DiamondTrap.cpp
 OBJ = $(SRC:.cpp=.o)
 
 $(NAME): $(OBJ)

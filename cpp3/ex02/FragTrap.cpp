@@ -36,7 +36,7 @@ FragTrap & FragTrap::operator=( FragTrap & src )
     {
         this->_name = src.getName();
         this->_hitpoints = src.getHitpoints();
-        this->_energypoints = src.getHitpoints();
+        this->_energypoints = src.getEnergypoints();
         this->_damage = src.getDamage();
         return *this;
     }
