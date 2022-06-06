@@ -19,6 +19,6 @@ class DiamondTrap: public ScavTrap, public FragTrap
 		std::string getDiamondName( void );
 
 	private:
-        std::string _name;
+        std::string _dname;
 };
 #endif
