@@ -12,7 +12,7 @@ class FragTrap: public ClapTrap
 
         FragTrap & operator=( FragTrap & src );
 
-        void attack( std::string const & target );
         void highFivesGuys( void );
+        void attack(std::string const & target);
 };
 #endif

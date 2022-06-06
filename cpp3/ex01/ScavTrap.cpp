@@ -3,41 +3,41 @@
 
 ScavTrap::ScavTrap( void )
 {
-    this->_name = "Default";
-    this->_hitpoints = 100;
-    this->_energypoints = 50;
-    this->_damage = 20;
-    std::cout << "ScavTrap " << this->_name << " has been created" << std::endl;
+    this->name = "Default";
+    this->hitpoints = 100;
+    this->energypoints = 50;
+    this->damage = 20;
+    std::cout << "ScavTrap " << this->name << " has been created" << std::endl;
 }
 
 ScavTrap::ScavTrap( std::string name)
 {
-    this->_name = name;
-    this->_hitpoints = 100;
-    this->_energypoints = 50;
-    this->_damage = 20;
-    std::cout << "ScavTrap " << this->_name << " has been created" << std::endl;
+    this->name = name;
+    this->hitpoints = 100;
+    this->energypoints = 50;
+    this->damage = 20;
+    std::cout << "ScavTrap " << this->name << " has been created" << std::endl;
 }
 
 ScavTrap::ScavTrap( ScavTrap & src )
 {
     *this = src;
-    std::cout << "Copy ScavTrap " << this->_name << " has been created" << std::endl;
+    std::cout << "Copy ScavTrap " << this->name << " has been created" << std::endl;
 }
 
 ScavTrap::~ScavTrap( void )
 {
-    std::cout << "ScavTrap " << this->_name << " has been destroyed"<< std::endl;
+    std::cout << "ScavTrap " << this->name << " has been destroyed"<< std::endl;
 }
 
 ScavTrap & ScavTrap::operator=( ScavTrap & src )
 {
     if (this != & src)
     {
-        this->_name = src.getName();
-        this->_hitpoints = src.getHitpoints();
-        this->_energypoints = src.getHitpoints();
-        this->_damage = src.getDamage();
+        this->name = src.name;
+        this->hitpoints = src.hitpoints;
+        this->energypoints = src.energypoints;
+        this->damage = src.damage;
         return *this;
     }
     return *this;
@@ -45,10 +45,10 @@ ScavTrap & ScavTrap::operator=( ScavTrap & src )
 
 void ScavTrap::attack(std::string const & target)
 {
-    std::cout << "ScavTrap " << this->_name << " attack " << target << ", causing " << this->_damage << " points of damage!" << std::endl;
+    std::cout << "ScavTrap " << this->name << " attack " << target << ", causing " << this->damage << " points of damage!" << std::endl;
 }
 
 void ScavTrap::guardGate( void )
 {
-    std::cout << "Scavtrap " << this->_name << " have entered in gate keeper mode!" << std::endl;
+    std::cout << "Scavtrap " << this->name << " have entered in gate keeper mode!" << std::endl;
 }
