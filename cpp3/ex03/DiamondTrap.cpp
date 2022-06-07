@@ -45,4 +45,6 @@ DiamondTrap & DiamondTrap::operator=(DiamondTrap & rhs)
 
 void DiamondTrap::whoAmI( void ) { std::cout << "I am " << this->getDiamondName() << "! (" << this->name << ")" << std::endl; }
 
+void DiamondTrap::attack(std::string const & target) { ScavTrap::attack(target); }
+
 std::string DiamondTrap::getDiamondName( void ) { return this->_dname; }
