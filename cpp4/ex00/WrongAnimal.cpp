@@ -1,8 +1,8 @@
 #include "WrongAnimal.hpp"
 
-WrongAnimal::WrongAnimal( void ): type("Default") { std::cout << "Default WrongAnimal Constructor Called" << std::endl; }
+WrongAnimal::WrongAnimal( void ): type("Default") { std::cout << "WrongAnimal Constructor Called" << std::endl; }
 
-WrongAnimal::WrongAnimal( std::string type ): type(type) { std::cout << "WrongAnimal " << type << " Constructor Called" << std::endl; }
+WrongAnimal::WrongAnimal( std::string type ): type(type) { std::cout << "WrongAnimal Constructor Called" << std::endl; }
 
 WrongAnimal::WrongAnimal( WrongAnimal & src )
 { 
@@ -16,7 +16,7 @@ WrongAnimal & WrongAnimal::operator=( WrongAnimal & rhs )
 {
 	if (this != &rhs)
 	{
-		this->type = rhs.type;
+		this->type = rhs.getType();
 	}
 	return *this;
 }

@@ -18,7 +18,7 @@ WrongCat & WrongCat::operator=( WrongCat & rhs )
 {
 	if (this != &rhs)
 	{
-		this->type = rhs.type;
+		this->type = rhs.getType();
 	}
 	return *this;
 }
