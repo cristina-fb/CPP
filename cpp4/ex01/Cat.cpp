@@ -10,6 +10,7 @@ Cat::Cat( void )
 Cat::Cat( Cat & src )
 { 
 	std::cout << "Copy Cat Constructor Called" << std::endl;
+	this->catBrain = new Brain();
 	*this = src;
 }
 

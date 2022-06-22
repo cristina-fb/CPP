@@ -29,15 +29,17 @@ int main()
 		delete list[i];
 	}
 	std::cout << std::endl << "------------------ PRUEBA 3 ------------------" << std::endl;
-	Cat catA;
-	Cat catB;
+	Cat * catA = new Cat();
+	Cat * catB = new Cat();;
 	Dog dogA;
 	Dog dogB;
-	(catA.getCatBrain())->ideas[0] = "hello kitty! <3";
+	(catA->getCatBrain())->ideas[0] = "hello kitty! <3";
 	catB = catA;
-	std::cout << (catB.getCatBrain())->ideas[0] << std::endl;
+	std::cout << (catB->getCatBrain())->ideas[0] << std::endl;
 	(dogA.getDogBrain())->ideas[59] = "hello puppy! <3";
 	dogB = dogA;
 	std::cout << (dogB.getDogBrain())->ideas[59] << std::endl;
+	delete catA;
+	delete catB;
 	return 0;
 }

@@ -9,8 +9,9 @@ Dog::Dog( void )
 
 Dog::Dog( Dog & src )
 { 
-	*this = src;
 	std::cout << "Copy Dog Constructor Called" << std::endl;
+	this->dogBrain = new Brain();
+	*this = src;
 }
 
 Dog::~Dog( void )
