@@ -12,10 +12,14 @@ Brain::Brain( void )
 
 Brain::Brain( Brain & src )
 {
-	*this = src;
 	std::cout << "Copy Brain Constructor Called" << std::endl;
+	*this = src;
 }
-Brain::~Brain( void ) { std::cout << "Brain Destructor Called" << std::endl; }
+
+Brain::~Brain( void )
+{
+	std::cout << "Brain Destructor Called" << std::endl;
+}
 
 Brain & Brain::operator=( Brain & rhs )
 {

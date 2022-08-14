@@ -31,6 +31,12 @@ Cat & Cat::operator=( Cat & rhs )
 	return *this;
 }
 
-void Cat::makeSound( void ) const { std::cout << "* meow meow *" << std::endl; }
+void Cat::makeSound( void ) const
+{
+	std::cout << "* meow meow *" << std::endl;
+}
 
-Brain* Cat::getCatBrain( void ) const { return this->catBrain; }
+Brain* Cat::getCatBrain( void ) const
+{
+	return this->catBrain;
+}

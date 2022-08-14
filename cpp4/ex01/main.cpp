@@ -12,7 +12,14 @@ void leaks(void)
 int main()
 {
 	atexit(leaks);
-	std::cout << "------------------ PRUEBA 1 ------------------" << std::endl;
+	Cat * a = new Cat();
+	Cat * b = new Cat();
+	*b = *a;
+	std::cout << a->getCatBrain() << std::endl;
+	std::cout << b->getCatBrain() << std::endl;
+	delete a;
+	delete b;
+	/*std::cout << "------------------ PRUEBA 1 ------------------" << std::endl;
 	const Animal* j = new Dog();
 	const Animal* i = new Cat();
 	j->makeSound();
@@ -23,7 +30,7 @@ int main()
 	list[0] = new Cat();
 	list[1] = new Cat();
 	list[2] = new Dog();
-	list[3] = new Dog();
+	list[3] = new Dog(); 
 	for (int i = 0; i < 4; i++)
 	{
 		delete list[i];
@@ -39,7 +46,18 @@ int main()
 	(dogA.getDogBrain())->ideas[59] = "hello puppy! <3";
 	dogB = dogA;
 	std::cout << (dogB.getDogBrain())->ideas[59] << std::endl;
+	std::cout << catA->getCatBrain() << std::endl;
+	std::cout << catB->getCatBrain() << std::endl;
 	delete catA;
-	delete catB;
+	delete catB
+	Brain * a = new Brain();
+	Brain * b = new Brain();
+	std::cout << "puntero a" << &a << std::endl;
+	std::cout << "puntero b" << &b << std::endl;
+	a = b;
+	std::cout << "puntero a" << &a << std::endl;
+	std::cout << "puntero b" << &b << std::endl;
+	std::cout << a->ideas << std::endl;
+	std::cout << b->ideas << std::endl;*/
 	return 0;
 }
