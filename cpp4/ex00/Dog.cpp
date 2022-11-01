@@ -12,7 +12,10 @@ Dog::Dog( Dog & src )
 	std::cout << "Copy Dog Constructor Called" << std::endl;
 }
 
-Dog::~Dog( void ) { std::cout << "Dog Destructor Called" << std::endl; }
+Dog::~Dog( void )
+{
+	std::cout << "Dog Destructor Called" << std::endl;
+}
 
 Dog & Dog::operator=( Dog & rhs )
 {
@@ -23,4 +26,7 @@ Dog & Dog::operator=( Dog & rhs )
 	return *this;
 }
 
-void Dog::makeSound( void ) const { std::cout << "* woof woof *" << std::endl; }
+void Dog::makeSound( void ) const
+{
+	std::cout << "* woof woof *" << std::endl;
+}

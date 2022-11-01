@@ -1,8 +1,14 @@
 #include "WrongAnimal.hpp"
 
-WrongAnimal::WrongAnimal( void ): type("Default") { std::cout << "WrongAnimal Constructor Called" << std::endl; }
+WrongAnimal::WrongAnimal( void ): type("Default")
+{
+	std::cout << "WrongAnimal Constructor Called" << std::endl;
+}
 
-WrongAnimal::WrongAnimal( std::string type ): type(type) { std::cout << "WrongAnimal Constructor Called" << std::endl; }
+WrongAnimal::WrongAnimal( std::string type ): type(type)
+{
+	std::cout << "WrongAnimal Constructor Called" << std::endl;
+}
 
 WrongAnimal::WrongAnimal( WrongAnimal & src )
 { 
@@ -10,7 +16,10 @@ WrongAnimal::WrongAnimal( WrongAnimal & src )
 	*this = src;
 }
 
-WrongAnimal::~WrongAnimal( void ) { std::cout << "WrongAnimal Destructor Called" << std::endl; }
+WrongAnimal::~WrongAnimal( void )
+{
+	std::cout << "WrongAnimal Destructor Called" << std::endl;
+}
 
 WrongAnimal & WrongAnimal::operator=( WrongAnimal & rhs )
 {
@@ -21,6 +30,12 @@ WrongAnimal & WrongAnimal::operator=( WrongAnimal & rhs )
 	return *this;
 }
 
-void WrongAnimal::makeSound( void ) const { std::cout << "* making Wronganimal sounds *" << std::endl; }
+void WrongAnimal::makeSound( void ) const
+{
+	std::cout << "* making Wronganimal sounds *" << std::endl;
+}
 
-std::string WrongAnimal::getType( void ) const { return this->type; }
+std::string WrongAnimal::getType( void ) const
+{
+	return this->type;
+}

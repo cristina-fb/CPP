@@ -12,7 +12,10 @@ WrongCat::WrongCat( WrongCat & src )
 	*this = src;
 }
 
-WrongCat::~WrongCat( void ) { std::cout << "WrongCat Destructor Called" << std::endl; }
+WrongCat::~WrongCat( void )
+{
+	std::cout << "WrongCat Destructor Called" << std::endl;
+}
 
 WrongCat & WrongCat::operator=( WrongCat & rhs )
 {
@@ -23,4 +26,7 @@ WrongCat & WrongCat::operator=( WrongCat & rhs )
 	return *this;
 }
 
-void WrongCat::makeSound( void ) const { std::cout << "* WrongCat goes meow meow *" << std::endl; }
+void WrongCat::makeSound( void ) const
+{
+	std::cout << "* WrongCat goes meow meow *" << std::endl;
+}

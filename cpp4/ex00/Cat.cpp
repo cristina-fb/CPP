@@ -12,7 +12,10 @@ Cat::Cat( Cat & src )
 	*this = src;
 }
 
-Cat::~Cat( void ) { std::cout << "Cat Destructor Called" << std::endl; }
+Cat::~Cat( void )
+{
+	std::cout << "Cat Destructor Called" << std::endl;
+}
 
 Cat & Cat::operator=( Cat & rhs )
 {
@@ -23,4 +26,7 @@ Cat & Cat::operator=( Cat & rhs )
 	return *this;
 }
 
-void Cat::makeSound( void ) const { std::cout << "* meow meow *" << std::endl; }
+void Cat::makeSound( void ) const
+{
+	std::cout << "* meow meow *" << std::endl;
+}
