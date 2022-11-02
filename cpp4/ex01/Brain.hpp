@@ -11,6 +11,12 @@ class Brain
 
 		Brain & operator=( Brain & rhs );
 
-		std::string ideas[100];
+		std::string* get_ideas( void );
+		void set_ideas( std::string myidea );
+		int get_n_ideas( void );
+
+	private:
+		int _n_ideas;
+		std::string _ideas[100];
 };
 #endif

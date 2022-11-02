@@ -2,22 +2,27 @@
 
 Cat::Cat( void )
 {
-	std::cout << "Cat Constructor Called" << std::endl;
 	this->type = "Cat";
-	this->catBrain = new Brain();
+	this->_catBrain = new Brain();
+	std::cout << "Cat Constructor Called" << std::endl;
 }
 
 Cat::Cat( Cat & src )
 { 
 	std::cout << "Copy Cat Constructor Called" << std::endl;
-	this->catBrain = new Brain();
+	this->_catBrain = new Brain();
 	*this = src;
 }
 
 Cat::~Cat( void )
 {
-	delete this->catBrain;
+	delete this->_catBrain;
 	std::cout << "Cat Destructor Called" << std::endl;
+}
+
+void Cat::makeSound( void ) const
+{
+	std::cout << "* meow meow *" << std::endl;
 }
 
 Cat & Cat::operator=( Cat & rhs )
@@ -26,17 +31,12 @@ Cat & Cat::operator=( Cat & rhs )
 	if (this != &rhs)
 	{
 		this->type = rhs.getType();
-		*(this->catBrain) = *(rhs.getCatBrain());
+		*(this->_catBrain) = *(rhs.get_CatBrain());
 	}
 	return *this;
 }
 
-void Cat::makeSound( void ) const
+Brain* Cat::get_CatBrain( void ) const
 {
-	std::cout << "* meow meow *" << std::endl;
-}
-
-Brain* Cat::getCatBrain( void ) const
-{
-	return this->catBrain;
+	return this->_catBrain;
 }
