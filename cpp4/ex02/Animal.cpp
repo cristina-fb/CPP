@@ -1,8 +1,14 @@
 #include "Animal.hpp"
 
-Animal::Animal( void ): type("Default") { std::cout << "Animal Constructor Called" << std::endl; }
+Animal::Animal( void ): type("Default")
+{
+	std::cout << "Animal Constructor Called" << std::endl;
+}
 
-Animal::Animal( std::string type ): type(type) { std::cout << "Animal Constructor Called" << std::endl; }
+Animal::Animal( std::string type ): type(type)
+{
+	std::cout << "Animal Constructor Called" << std::endl;
+}
 
 Animal::Animal( Animal & src )
 { 
@@ -10,7 +16,10 @@ Animal::Animal( Animal & src )
 	*this = src;
 }
 
-Animal::~Animal( void ) { std::cout << "Animal Destructor Called" << std::endl; }
+Animal::~Animal( void )
+{
+	std::cout << "Animal Destructor Called" << std::endl;
+}
 
 Animal & Animal::operator=( Animal & rhs )
 {
@@ -21,4 +30,12 @@ Animal & Animal::operator=( Animal & rhs )
 	return *this;
 }
 
-std::string Animal::getType( void ) const { return this->type; }
+void Animal::makeSound( void ) const
+{
+	std::cout << "* making animal sounds *" << std::endl;
+}
+
+std::string Animal::getType( void ) const
+{
+	return this->type;
+}

@@ -2,34 +2,41 @@
 
 Dog::Dog( void )
 {
-	std::cout << "Dog Constructor Called" << std::endl;
 	this->type = "Dog";
-	this->dogBrain = new Brain();
+	this->_dogBrain = new Brain();
+	std::cout << "Dog Constructor Called" << std::endl;
 }
 
 Dog::Dog( Dog & src )
 { 
-	*this = src;
 	std::cout << "Copy Dog Constructor Called" << std::endl;
+	this->_dogBrain = new Brain();
+	*this = src;
 }
 
 Dog::~Dog( void )
 {
-	delete this->dogBrain;
+	delete this->_dogBrain;
 	std::cout << "Dog Destructor Called" << std::endl;
 }
 
 Dog & Dog::operator=( Dog & rhs )
 {
-	std::cout << "Copying puppies >.<" << std::endl;
+	std::cout << "Copying puppies n.n " << std::endl;
 	if (this != &rhs)
 	{
 		this->type = rhs.getType();
-		*(this->dogBrain) = *(rhs.getDogBrain());
+		*(this->_dogBrain) = *(rhs.get_DogBrain());
 	}
 	return *this;
 }
 
-void Dog::makeSound( void ) const { std::cout << "* woof woof *" << std::endl; }
+void Dog::makeSound( void ) const
+{
+	std::cout << "* woof woof *" << std::endl;
+}
 
-Brain* Dog::getDogBrain( void ) const { return this->dogBrain; }
+Brain* Dog::get_DogBrain( void ) const
+{
+	return this->_dogBrain;
+}
