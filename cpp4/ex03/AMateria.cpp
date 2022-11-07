@@ -18,12 +18,12 @@ Amateria::AMateria( AMateria & cpy )
 
 AMateria::~AMateria( void )
 {
-	std::cout << "Materia Destructor" << std::endl;
+	std::cout << "Materia " << type << " Destructor" << std::endl;
 }
 
 AMateria & AMateria::operator=( AMateria & asg )
 {
-	if (*this != asg) //ESTO ESTÁ FATAL
+	if (*this != asg)
 	{
 		this->type = asg.getType();
 	}
@@ -35,4 +35,7 @@ std::string const & AMateria::getType() const
 	return this->type;
 }
 
-void AMateria::use(ICharacter& target) {}
+void use(ICharacter& target)
+{
+	std::cout << "Using " << this->type << " against " << target.getName() << std::endl;
+}

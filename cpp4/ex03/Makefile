@@ -1,7 +1,7 @@
 CXX = clang++
 CXXFLAGS = -Wall -Werror -Wextra -std=c++98 -pedantic
 NAME = Materia
-SRC = main.cpp Materia.cpp
+SRC = main.cpp AMateria.cpp Cure.cpp Ice.cpp MateriaSource.cpp Character.cpp
 OBJ = $(SRC:.cpp=.o)
 
 $(NAME): $(OBJ)

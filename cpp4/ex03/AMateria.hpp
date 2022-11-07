@@ -1,6 +1,7 @@
-#ifndef MATERIA_CLASS_HPP
-# define MATERIA_CLASS_HPP
+#ifndef AMATERIA_CLASS_HPP
+# define AMATERIA_CLASS_HPP
 # include <iostream>
+# include "ICharacter.hpp"
 
 class AMateria
 {

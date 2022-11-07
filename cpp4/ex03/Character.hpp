@@ -1,18 +1,26 @@
-#ifndef CHARACTER_CLASS_HPP
-# define CHARACTER_CLASS_HPP
+#ifndef ICHARACTER_CLASS_HPP
+# define ICHARACTER_CLASS_HPP
 # include <iostream>
-# include "Materia.hpp"
+# include "ICharacter.hpp"
 
-class ICharacter
+class Character: public ICharacter
 {
-	public:
-		virtual ~ICharacter() {}
-		virtual std::string const & getName() const = 0;
-		virtual void equip(AMateria* m) = 0;
-		virtual void unequip(int idx) = 0;
-		virtual void use(int idx, ICharacter& target) = 0;
-	
-	protected:
-		AMateria * inventory[4];
+    public:
+        Character( void );
+        Character( std::string name );
+        Character( Character & cpy );
+        ~Character( void );
+
+        Character & operator=( Character & asg );
+
+		std::string const & getName() const;
+		void equip(AMateria* m);
+		void unequip(int idx);
+		void use(int idx, ICharacter& target);
+        
+        AMateria* inventory[4];
+
+    private:
+        std::string _name;
 };
 #endif
