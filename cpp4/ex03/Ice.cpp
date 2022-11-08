@@ -1,13 +1,16 @@
 #include "Ice.hpp"
 
-Ice::Ice( void ): type("ice")
+Ice::Ice( void )
 {
+    this->type = "ice";
 	std::cout << "Ice Constructor" << std::endl;
 }
 
-Ice::Ice( Ice & cpy ): type("ice")
+Ice::Ice( Ice & cpy )
 {
+    this->type = "ice";
     std::cout << "Ice Copy Constructor" << std::endl;
+    *this = cpy;
 }
 
 Ice::~Ice( void )
@@ -18,6 +21,8 @@ Ice::~Ice( void )
 Ice & Ice::operator=( Ice & asg )
 {
     //Nada?
+    std::cout << asg.getType() << std::endl;
+    return *this;
 }
 
 AMateria* Ice::clone() const

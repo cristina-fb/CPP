@@ -1,4 +1,3 @@
-#include "Materia.hpp"
 #include "Character.hpp"
 
 Character::Character( void ): _name("Default")
@@ -30,7 +29,7 @@ Character::~Character( void )
 
 Character & Character::operator=( Character & asg )
 {
-    if (*this != asg)
+    if (this != &asg)
     {
         this->_name = asg.getName();
         for (int i = 0; i < 4; i++)
@@ -39,12 +38,12 @@ Character & Character::operator=( Character & asg )
     return *this;
 }
 
-std::string const & getName() const
+std::string const & Character::getName() const
 {
     return this->_name;
 }
 
-void equip(AMateria* m)
+void Character::equip(AMateria* m)
 {
     for (int i = 0; i < 4; i++)
     {
@@ -56,14 +55,14 @@ void equip(AMateria* m)
     }
 }
 
-void unequip(int idx)
+void Character::unequip(int idx)
 {
-    if ((idx >= 0) && (idk < 4))
-        this->_inventory[idx] = 0;
+    if ((idx >= 0) && (idx < 4))
+        this->inventory[idx] = 0;
 }
 
-void use(int idx, ICharacter& target)
+void Character::use(int idx, ICharacter& target)
 {
-    if ((idx >= 0) && (idk < 4))
+    if ((idx >= 0) && (idx < 4))
         (this->inventory[idx])->use(target);
 }

@@ -1,5 +1,5 @@
-#ifndef ICHARACTER_CLASS_HPP
-# define ICHARACTER_CLASS_HPP
+#ifndef CHARACTER_CLASS_HPP
+# define CHARACTER_CLASS_HPP
 # include <iostream>
 # include "ICharacter.hpp"
 

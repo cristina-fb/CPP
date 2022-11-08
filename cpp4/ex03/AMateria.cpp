@@ -1,4 +1,4 @@
-#include "Materia.hpp"
+#include "AMateria.hpp"
 
 AMateria::AMateria( void ): type("Default")
 {
@@ -10,7 +10,7 @@ AMateria::AMateria( std::string const & type ): type(type)
 	std::cout << "Materia " << type << " Constructor" << std::endl;
 }
 
-Amateria::AMateria( AMateria & cpy )
+AMateria::AMateria( AMateria & cpy )
 {
 	std::cout << "Materia Copy Constructor" << std::endl;
 	*this = cpy;
@@ -23,7 +23,7 @@ AMateria::~AMateria( void )
 
 AMateria & AMateria::operator=( AMateria & asg )
 {
-	if (*this != asg)
+	if (this != &asg)
 	{
 		this->type = asg.getType();
 	}
@@ -35,7 +35,7 @@ std::string const & AMateria::getType() const
 	return this->type;
 }
 
-void use(ICharacter& target)
+void AMateria::use(ICharacter& target)
 {
 	std::cout << "Using " << this->type << " against " << target.getName() << std::endl;
 }
