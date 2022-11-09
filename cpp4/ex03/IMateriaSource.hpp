@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   IMateriaSource.hpp                                 :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: crisfern <crisfern@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/11/09 16:33:05 by crisfern          #+#    #+#             */
+/*   Updated: 2022/11/09 16:33:07 by crisfern         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef IMATERIASOURCE_CLASS_HPP
 # define IMATERIASOURCE_CLASS_HPP
 # include <iostream>

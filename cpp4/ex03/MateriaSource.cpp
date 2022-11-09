@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   MateriaSource.cpp                                  :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: crisfern <crisfern@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/11/09 16:50:36 by crisfern          #+#    #+#             */
+/*   Updated: 2022/11/09 16:50:49 by crisfern         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "MateriaSource.hpp"
 
 MateriaSource::MateriaSource( void )
@@ -17,14 +29,8 @@ MateriaSource::~MateriaSource( void )
 {
     std::cout << "MateriaSource Destructor" << std::endl;
     for (int i = 0; i < 4; i++)
-    {
         if (this->list[i] != 0)
-        {
-            std::cout << (this->list[i])->getType() << std::endl;
             delete this->list[i];
-            std::cout << "aaaaa" << std::endl;
-        }
-    }
 }
 
 MateriaSource & MateriaSource::operator=(MateriaSource & asg)

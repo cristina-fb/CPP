@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   Cat.hpp                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: crisfern <crisfern@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/11/09 15:40:46 by crisfern          #+#    #+#             */
+/*   Updated: 2022/11/09 15:40:47 by crisfern         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef CAT_CLASS_HPP
 # define CAT_CLASS_HPP
 # include <iostream>
@@ -9,7 +21,7 @@ class Cat: public Animal
 	public:
 		Cat( void );
 		Cat( Cat & src );
-		~Cat( void );
+		virtual ~Cat( void );
 
 		Cat & operator=( Cat & rhs );
 

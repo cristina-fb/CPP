@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   Dog.hpp                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: crisfern <crisfern@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/11/09 15:40:59 by crisfern          #+#    #+#             */
+/*   Updated: 2022/11/09 15:41:00 by crisfern         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef DOG_CLASS_HPP
 # define DOG_CLASS_HPP
 # include <iostream>
@@ -9,7 +21,7 @@ class Dog: public Animal
 	public:
 		Dog( void );
 		Dog( Dog & src );
-		~Dog( void );
+		virtual ~Dog( void );
 
 		Dog & operator=( Dog & rhs );
 

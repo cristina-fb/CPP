@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   main.cpp                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: crisfern <crisfern@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/11/09 15:13:35 by crisfern          #+#    #+#             */
+/*   Updated: 2022/11/09 16:13:56 by crisfern         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include <iostream>
 #include "Animal.hpp"
 #include "Dog.hpp"
@@ -33,9 +45,22 @@ int main()
 	Cat * b = new Cat();
 	std::cout << "Cat B has " <<(b->get_CatBrain())->get_n_ideas() << " ideas!" << std::endl << std::endl;
 	*b = *a;
+	delete a;
 	std::cout << "Cat B has " <<(b->get_CatBrain())->get_n_ideas() << " ideas!" << std::endl;
 	std::cout << (b->get_CatBrain())->get_ideas()[49] << std::endl << std::endl;
-	delete a;
 	delete b;
+
+	std::cout << "------------------ TEST 3 ------------------" << std::endl;
+	Dog * c = new Dog();
+	for (int i = 0; i < 50; i++)
+		(c->get_DogBrain())->set_ideas("wanna sleep!");
+	std::cout << "Dog C has " <<(c->get_DogBrain())->get_n_ideas() << " ideas!" << std::endl << std::endl;
+	Dog * d = new Dog();
+	std::cout << "Dog D has " <<(d->get_DogBrain())->get_n_ideas() << " ideas!" << std::endl << std::endl;
+	*d = *c;
+	delete c;
+	std::cout << "Dog D has " <<(d->get_DogBrain())->get_n_ideas() << " ideas!" << std::endl;
+	std::cout << (d->get_DogBrain())->get_ideas()[49] << std::endl << std::endl;
+	delete d;
 	return 0;
 }

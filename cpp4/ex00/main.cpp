@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   main.cpp                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: crisfern <crisfern@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/11/09 14:38:33 by crisfern          #+#    #+#             */
+/*   Updated: 2022/11/09 15:22:12 by crisfern         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include <iostream>
 #include "Animal.hpp"
 #include "Dog.hpp"
@@ -41,10 +53,17 @@ int main()
 	delete k;
 
 	std::cout << "----------------------------" << std::endl;
-	std::cout << "< WRONGCAT >" << std::endl;
+	std::cout << "< WRONGCAT AS A WRONGANIMAL>" << std::endl;
 	const WrongAnimal* l = new WrongCat();
 	std::cout << l->getType() << std::endl;
 	l->makeSound();
 	delete l;
 	
+	std::cout << "----------------------------" << std::endl;
+	std::cout << "< WRONGCAT AS A WRONGCAT>" << std::endl;
+	const WrongCat* m = new WrongCat();
+	std::cout << m->getType() << std::endl;
+	m->makeSound();
+	delete m;
+	return 0;
 }
