@@ -16,12 +16,18 @@ MateriaSource::MateriaSource( void )
 {
     std::cout << "MateriaSource Constructor" << std::endl;
     for (int i = 0; i < 4; i++)
-            this->list[i] = 0;
+    {
+        this->list[i] = 0;
+    }
 }
 
 MateriaSource::MateriaSource( MateriaSource & cpy)
 {
     std::cout << "MateriaSource copy Constructor" << std::endl;
+    for (int i = 0; i < 4; i++)
+    {
+        this->list[i] = 0;
+    }
     *this = cpy;
 }
 
@@ -29,8 +35,12 @@ MateriaSource::~MateriaSource( void )
 {
     std::cout << "MateriaSource Destructor" << std::endl;
     for (int i = 0; i < 4; i++)
+    {
         if (this->list[i] != 0)
+        {
             delete this->list[i];
+        }
+    }
 }
 
 MateriaSource & MateriaSource::operator=(MateriaSource & asg)
@@ -38,7 +48,23 @@ MateriaSource & MateriaSource::operator=(MateriaSource & asg)
     if (this != &asg)
     {
         for (int i = 0; i < 4; i++)
-            list[i] = (asg.list[i])->clone();
+        {
+            if (this->list[i] != 0)
+            {
+                delete this->list[i];
+            }
+        }
+        for (int i = 0; i < 4; i++)
+        {
+            if (asg.list[i] != 0)
+            {
+                list[i] = (asg.list[i])->clone();
+            }
+            else
+            {
+                list[i] = 0;
+            }
+        }
     }
     return *this;
 }
@@ -53,6 +79,7 @@ void MateriaSource::learnMateria(AMateria* m)
             return;
         }
     }
+    std::cout << "Not enough space in memory :(" << std::endl;
 }
 
 AMateria* MateriaSource::createMateria(std::string const & type)
@@ -60,7 +87,9 @@ AMateria* MateriaSource::createMateria(std::string const & type)
     for (int i = 0; i < 4; i++)
     {
         if ((this->list[i])->getType() == type)
+        {
             return (this->list[i])->clone();
+        }
     }
     return 0;
 }

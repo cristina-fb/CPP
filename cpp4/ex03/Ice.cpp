@@ -20,9 +20,8 @@ Ice::Ice( void )
 
 Ice::Ice( Ice & cpy )
 {
-    this->type = "ice";
+    this->type = cpy.getType();
     std::cout << "Ice Copy Constructor" << std::endl;
-    *this = cpy;
 }
 
 Ice::~Ice( void )
@@ -32,8 +31,7 @@ Ice::~Ice( void )
 
 Ice & Ice::operator=( Ice & asg )
 {
-    //Nada?
-    std::cout << asg.getType() << std::endl;
+    std::cout << "Both materias are " << asg.getType() << " materias!" << std::endl;
     return *this;
 }
 

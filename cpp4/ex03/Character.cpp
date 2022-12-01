@@ -29,6 +29,8 @@ Character::Character( std::string name ): _name(name)
 Character::Character( Character & cpy )
 {
     std::cout << "Character Copy Constructor" << std::endl;
+    for (int i = 0; i < 4; i++)
+            this->inventory[i] = 0;
     *this = cpy;
 }
 
@@ -36,16 +38,36 @@ Character::~Character( void )
 {
     std::cout << "Character " << this->_name << " Destructor" << std::endl;
     for (int i = 0; i < 4; i++)
+    {
+        if (this->inventory[i] != 0)
             delete this->inventory[i];
+    }
 }
 
 Character & Character::operator=( Character & asg )
 {
+    std::cout << "AAAAA" << std::endl;
     if (this != &asg)
     {
         this->_name = asg.getName();
         for (int i = 0; i < 4; i++)
-            this->inventory[i] = (asg.inventory[i])->clone();
+        {
+            if (this->inventory[i] != 0)
+            {
+                delete this->inventory[i];
+            }
+        }
+        for (int i = 0; i < 4; i++)
+        {
+            if (asg.inventory[i] != 0)
+            {
+                this->inventory[i] = (asg.inventory[i])->clone();
+            }
+            else
+            {
+                this->inventory[i] = 0;
+            }
+        }
     }
     return *this;
 }
@@ -65,16 +87,28 @@ void Character::equip(AMateria* m)
             return;
         }
     }
+    std::cout << "Not enough space on inventory :(" << std::endl;
 }
 
 void Character::unequip(int idx)
 {
     if ((idx >= 0) && (idx < 4))
+    {
         this->inventory[idx] = 0;
+        return;
+    }
+    std::cout << "Index "<< idx << " not valid" << std::endl;
 }
 
 void Character::use(int idx, ICharacter& target)
 {
     if ((idx >= 0) && (idx < 4))
-        (this->inventory[idx])->use(target);
+    {
+        if (this->inventory[idx] != 0)
+        {
+            (this->inventory[idx])->use(target);
+            return;
+        }
+    }
+    std::cout << "No Materia available in index " << idx << std::endl;
 }

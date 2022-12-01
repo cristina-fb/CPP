@@ -25,7 +25,7 @@ AMateria::AMateria( std::string const & type ): type(type)
 AMateria::AMateria( AMateria & cpy )
 {
 	std::cout << "Materia Copy Constructor" << std::endl;
-	*this = cpy;
+	this->type = cpy.getType();
 }
 
 AMateria::~AMateria( void )
@@ -35,10 +35,7 @@ AMateria::~AMateria( void )
 
 AMateria & AMateria::operator=( AMateria & asg )
 {
-	if (this != &asg)
-	{
-		this->type = asg.getType();
-	}
+	std::cout << "Trying to asign " << asg.getType() << " to " << this->type << std::endl;
 	return *this;
 }
 

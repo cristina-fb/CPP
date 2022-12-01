@@ -20,9 +20,8 @@ Cure::Cure( void )
 
 Cure::Cure(Cure & cpy )
 {
-    this->type = "cure";
+    this->type = cpy.getType();
     std::cout << "Cure Copy Constructor" << std::endl;
-    *this = cpy;
 }
 
 Cure::~Cure( void )
@@ -32,8 +31,7 @@ Cure::~Cure( void )
 
 Cure &Cure::operator=(Cure & asg )
 {
-    //Nada?
-    std::cout << asg.getType() << std::endl;
+    std::cout << "Both materias are " << asg.getType() << " materias!" << std::endl;
     return *this;
 }
 
