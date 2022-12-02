@@ -6,7 +6,7 @@
 /*   By: crisfern <crisfern@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/09 15:12:17 by crisfern          #+#    #+#             */
-/*   Updated: 2022/11/09 15:12:21 by crisfern         ###   ########.fr       */
+/*   Updated: 2022/12/02 17:32:56 by crisfern         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,23 +14,23 @@
 
 Animal::Animal( void ): type("Default")
 {
-	std::cout << "Animal Constructor Called" << std::endl;
+	std::cout << "Animal constructor called!" << std::endl;
 }
 
 Animal::Animal( std::string type ): type(type)
 {
-	std::cout << "Animal Constructor Called" << std::endl;
+	std::cout << "Animal " << type << " constructor called!" << std::endl;
 }
 
 Animal::Animal( Animal & src )
 { 
-	std::cout << "Copy Animal Constructor Called" << std::endl;
+	std::cout << "Copy animal constructor called!" << std::endl;
 	*this = src;
 }
 
 Animal::~Animal( void )
 {
-	std::cout << "Animal Destructor Called" << std::endl;
+	std::cout << "Animal destructor called!" << std::endl;
 }
 
 Animal & Animal::operator=( Animal & rhs )
@@ -50,4 +50,9 @@ void Animal::makeSound( void ) const
 std::string Animal::getType( void ) const
 {
 	return this->type;
+}
+
+void Animal::setType( std::string myType )
+{
+	this->type = myType;
 }

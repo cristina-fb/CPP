@@ -6,7 +6,7 @@
 /*   By: crisfern <crisfern@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/09 15:12:48 by crisfern          #+#    #+#             */
-/*   Updated: 2022/11/09 15:26:06 by crisfern         ###   ########.fr       */
+/*   Updated: 2022/12/02 17:30:25 by crisfern         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 Brain::Brain( void ): _n_ideas(0)
 {
-	std::cout << "Brain Constructor Called" << std::endl;
+	std::cout << "Brain constructor called!" << std::endl;
 	for (int i = 0; i < 100; i++)
 	{
 		this->_ideas[i] = "";
@@ -24,7 +24,7 @@ Brain::Brain( void ): _n_ideas(0)
 
 Brain::Brain( Brain & src )
 {
-	std::cout << "Copy Brain Constructor Called" << std::endl;
+	std::cout << "Copy brain constructor called!" << std::endl;
 	for (int i = 0; i < 100; i++)
 	{
 		this->_ideas[i] = "";
@@ -34,23 +34,25 @@ Brain::Brain( Brain & src )
 
 Brain::~Brain( void )
 {
-	std::cout << "Brain Destructor Called" << std::endl;
+	std::cout << "Brain destructor called!" << std::endl;
 }
 
 Brain & Brain::operator=( Brain & rhs )
 {
 	int n;
-	std::cout << "Copying Brains..." << std::endl;
+	std::cout << "Copying brains..." << std::endl;
 	if (this != &rhs)
 	{
 		n = rhs.get_n_ideas();
 		for (int i = 0; i < n; i++)
+		{
 			this->set_ideas(rhs.get_ideas()[i]);
+		}
 	}
 	return *this;
 }
 
-int Brain::get_n_ideas( void )
+int Brain::get_n_ideas( void ) const
 {
 	return this->_n_ideas;
 }
@@ -68,5 +70,7 @@ void Brain::set_ideas( std::string myidea )
 		this->_n_ideas++;
 	}
 	else
-		std::cout << "No more space on the brain T.T" << std::endl;
+	{
+		std::cout << "Can't load ideas on the brain T.T" << std::endl;
+	}
 }

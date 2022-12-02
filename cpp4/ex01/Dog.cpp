@@ -6,7 +6,7 @@
 /*   By: crisfern <crisfern@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/09 15:13:26 by crisfern          #+#    #+#             */
-/*   Updated: 2022/11/09 15:13:27 by crisfern         ###   ########.fr       */
+/*   Updated: 2022/12/02 17:49:38 by crisfern         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,14 +14,14 @@
 
 Dog::Dog( void )
 {
+	std::cout << "Dog constructor called!" << std::endl;
 	this->type = "Dog";
 	this->_dogBrain = new Brain();
-	std::cout << "Dog Constructor Called" << std::endl;
 }
 
 Dog::Dog( Dog & src )
 { 
-	std::cout << "Copy Dog Constructor Called" << std::endl;
+	std::cout << "Copy dog constructor called!" << std::endl;
 	this->_dogBrain = new Brain();
 	*this = src;
 }
@@ -29,7 +29,7 @@ Dog::Dog( Dog & src )
 Dog::~Dog( void )
 {
 	delete this->_dogBrain;
-	std::cout << "Dog Destructor Called" << std::endl;
+	std::cout << "Dog destructor called!" << std::endl;
 }
 
 Dog & Dog::operator=( Dog & rhs )
@@ -38,7 +38,7 @@ Dog & Dog::operator=( Dog & rhs )
 	if (this != &rhs)
 	{
 		this->type = rhs.getType();
-		*(this->_dogBrain) = *(rhs.get_DogBrain());
+		*(this->_dogBrain) = *(rhs.getDogBrain());
 	}
 	return *this;
 }
@@ -48,7 +48,7 @@ void Dog::makeSound( void ) const
 	std::cout << "* woof woof *" << std::endl;
 }
 
-Brain* Dog::get_DogBrain( void ) const
+Brain* Dog::getDogBrain( void ) const
 {
 	return this->_dogBrain;
 }

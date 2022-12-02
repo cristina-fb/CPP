@@ -6,7 +6,7 @@
 /*   By: crisfern <crisfern@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/09 15:13:29 by crisfern          #+#    #+#             */
-/*   Updated: 2022/11/09 15:13:30 by crisfern         ###   ########.fr       */
+/*   Updated: 2022/12/02 17:36:20 by crisfern         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ class Dog: public Animal
 		Dog & operator=( Dog & rhs );
 
 		void makeSound( void ) const;
-		Brain *get_DogBrain( void ) const;
+		Brain *getDogBrain( void ) const;
 
 	private:
 		Brain* _dogBrain;
