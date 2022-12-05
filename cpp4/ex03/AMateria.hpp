@@ -6,7 +6,7 @@
 /*   By: crisfern <crisfern@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/09 16:32:09 by crisfern          #+#    #+#             */
-/*   Updated: 2022/11/09 16:32:10 by crisfern         ###   ########.fr       */
+/*   Updated: 2022/12/05 17:14:18 by crisfern         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@ class AMateria
 		AMateria & operator=( AMateria & asg );
 
 		std::string const & getType() const;
+		void setType( std::string const myType );
 		virtual AMateria* clone() const = 0;
 		virtual void use(ICharacter& target);
 };

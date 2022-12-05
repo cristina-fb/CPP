@@ -6,7 +6,7 @@
 /*   By: crisfern <crisfern@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/09 16:50:36 by crisfern          #+#    #+#             */
-/*   Updated: 2022/11/09 16:50:49 by crisfern         ###   ########.fr       */
+/*   Updated: 2022/12/05 18:00:12 by crisfern         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 MateriaSource::MateriaSource( void )
 {
-    std::cout << "MateriaSource Constructor" << std::endl;
+    std::cout << "MateriaSource constructor!" << std::endl;
     for (int i = 0; i < 4; i++)
     {
         this->list[i] = 0;
@@ -23,7 +23,7 @@ MateriaSource::MateriaSource( void )
 
 MateriaSource::MateriaSource( MateriaSource & cpy)
 {
-    std::cout << "MateriaSource copy Constructor" << std::endl;
+    std::cout << "MateriaSource copy constructor!" << std::endl;
     for (int i = 0; i < 4; i++)
     {
         this->list[i] = 0;
@@ -33,7 +33,7 @@ MateriaSource::MateriaSource( MateriaSource & cpy)
 
 MateriaSource::~MateriaSource( void )
 {
-    std::cout << "MateriaSource Destructor" << std::endl;
+    std::cout << "MateriaSource destructor!" << std::endl;
     for (int i = 0; i < 4; i++)
     {
         if (this->list[i] != 0)

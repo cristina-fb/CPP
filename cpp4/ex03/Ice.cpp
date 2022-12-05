@@ -6,7 +6,7 @@
 /*   By: crisfern <crisfern@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/09 16:32:46 by crisfern          #+#    #+#             */
-/*   Updated: 2022/11/09 16:32:47 by crisfern         ###   ########.fr       */
+/*   Updated: 2022/12/05 17:28:31 by crisfern         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,18 +15,18 @@
 Ice::Ice( void )
 {
     this->type = "ice";
-	std::cout << "Ice Constructor" << std::endl;
+	std::cout << "Ice constructor!" << std::endl;
 }
 
 Ice::Ice( Ice & cpy )
 {
     this->type = cpy.getType();
-    std::cout << "Ice Copy Constructor" << std::endl;
+    std::cout << "Ice copy constructor!" << std::endl;
 }
 
 Ice::~Ice( void )
 {
-    std::cout << "Ice Destructor" << std::endl;
+    std::cout << "Ice Destructor!" << std::endl;
 }
 
 Ice & Ice::operator=( Ice & asg )

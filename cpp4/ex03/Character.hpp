@@ -6,7 +6,7 @@
 /*   By: crisfern <crisfern@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/09 16:32:25 by crisfern          #+#    #+#             */
-/*   Updated: 2022/11/09 16:32:26 by crisfern         ###   ########.fr       */
+/*   Updated: 2022/12/05 17:48:24 by crisfern         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ class Character: public ICharacter
         Character & operator=( Character & asg );
 
 		std::string const & getName() const;
+        void setName(std::string const myName);
 		void equip(AMateria* m);
 		void unequip(int idx);
 		void use(int idx, ICharacter& target);

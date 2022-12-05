@@ -6,7 +6,7 @@
 /*   By: crisfern <crisfern@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/09 16:33:12 by crisfern          #+#    #+#             */
-/*   Updated: 2022/11/09 16:33:13 by crisfern         ###   ########.fr       */
+/*   Updated: 2022/12/05 18:18:09 by crisfern         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,7 @@ int main( void )
 	me->use(0, *bob);
 	me->use(1, *bob);
 	me->unequip(13);
+	me->unequip(-42);
 	//me->unequip(3);
 	//me->use(3, *bob);
 	std::cout << "-----------------------------------------" << std::endl;
