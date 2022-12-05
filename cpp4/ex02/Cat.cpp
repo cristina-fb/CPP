@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: crisfern <crisfern@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/09 15:40:38 by crisfern          #+#    #+#             */
-/*   Updated: 2022/11/09 15:40:40 by crisfern         ###   ########.fr       */
+/*   Created: 2022/11/09 15:13:03 by crisfern          #+#    #+#             */
+/*   Updated: 2022/12/02 17:35:49 by crisfern         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,13 +15,13 @@
 Cat::Cat( void )
 {
 	this->type = "Cat";
+	std::cout << "Cat constructor called!" << std::endl;
 	this->_catBrain = new Brain();
-	std::cout << "Cat Constructor Called" << std::endl;
 }
 
 Cat::Cat( Cat & src )
 { 
-	std::cout << "Copy Cat Constructor Called" << std::endl;
+	std::cout << "Copy cat constructor called!" << std::endl;
 	this->_catBrain = new Brain();
 	*this = src;
 }
@@ -29,7 +29,7 @@ Cat::Cat( Cat & src )
 Cat::~Cat( void )
 {
 	delete this->_catBrain;
-	std::cout << "Cat Destructor Called" << std::endl;
+	std::cout << "Cat destructor called!" << std::endl;
 }
 
 void Cat::makeSound( void ) const
@@ -43,12 +43,12 @@ Cat & Cat::operator=( Cat & rhs )
 	if (this != &rhs)
 	{
 		this->type = rhs.getType();
-		*(this->_catBrain) = *(rhs.get_CatBrain());
+		*(this->_catBrain) = *(rhs.getCatBrain());
 	}
 	return *this;
 }
 
-Brain* Cat::get_CatBrain( void ) const
+Brain* Cat::getCatBrain( void ) const
 {
 	return this->_catBrain;
 }

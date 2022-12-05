@@ -6,7 +6,7 @@
 /*   By: crisfern <crisfern@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/09 15:41:04 by crisfern          #+#    #+#             */
-/*   Updated: 2022/11/09 16:15:12 by crisfern         ###   ########.fr       */
+/*   Updated: 2022/12/05 17:10:47 by crisfern         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@
 int main()
 {
 	//atexit(leaks);
-	//Animal* myAnimal = new Animal();
+	//Animal myAnimal = new Animal();
 	std::cout << "------------------ TEST 1 ------------------" << std::endl;
 	const Animal* list[4];
 
@@ -41,27 +41,27 @@ int main()
 	std::cout << "------------------ TEST 2 ------------------" << std::endl;
 	Cat * a = new Cat();
 	for (int i = 0; i < 50; i++)
-		(a->get_CatBrain())->set_ideas("wanna eat!");
-	std::cout << "Cat A has " <<(a->get_CatBrain())->get_n_ideas() << " ideas!" << std::endl << std::endl;
+		(a->getCatBrain())->set_ideas("wanna eat!");
+	std::cout << "Cat A has " <<(a->getCatBrain())->get_n_ideas() << " ideas!" << std::endl << std::endl;
 	Cat * b = new Cat();
-	std::cout << "Cat B has " <<(b->get_CatBrain())->get_n_ideas() << " ideas!" << std::endl << std::endl;
+	std::cout << "Cat B has " <<(b->getCatBrain())->get_n_ideas() << " ideas!" << std::endl << std::endl;
 	*b = *a;
 	delete a;
-	std::cout << "Cat B has " <<(b->get_CatBrain())->get_n_ideas() << " ideas!" << std::endl;
-	std::cout << (b->get_CatBrain())->get_ideas()[49] << std::endl << std::endl;
+	std::cout << "Cat B has " <<(b->getCatBrain())->get_n_ideas() << " ideas!" << std::endl;
+	std::cout << (b->getCatBrain())->get_ideas()[49] << std::endl << std::endl;
 	delete b;
 	
 	std::cout << "------------------ TEST 3 ------------------" << std::endl;
 	Dog * c = new Dog();
 	for (int i = 0; i < 50; i++)
-		(c->get_DogBrain())->set_ideas("wanna sleep!");
-	std::cout << "Dog C has " <<(c->get_DogBrain())->get_n_ideas() << " ideas!" << std::endl << std::endl;
+		(c->getDogBrain())->set_ideas("wanna sleep!");
+	std::cout << "Dog C has " <<(c->getDogBrain())->get_n_ideas() << " ideas!" << std::endl << std::endl;
 	Dog * d = new Dog();
-	std::cout << "Dog D has " <<(d->get_DogBrain())->get_n_ideas() << " ideas!" << std::endl << std::endl;
+	std::cout << "Dog D has " <<(d->getDogBrain())->get_n_ideas() << " ideas!" << std::endl << std::endl;
 	*d = *c;
 	delete c;
-	std::cout << "Dog D has " <<(d->get_DogBrain())->get_n_ideas() << " ideas!" << std::endl;
-	std::cout << (d->get_DogBrain())->get_ideas()[49] << std::endl << std::endl;
+	std::cout << "Dog D has " <<(d->getDogBrain())->get_n_ideas() << " ideas!" << std::endl;
+	std::cout << (d->getDogBrain())->get_ideas()[49] << std::endl << std::endl;
 	delete d;
 	return 0;
 }

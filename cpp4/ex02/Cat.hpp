@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: crisfern <crisfern@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/09 15:40:46 by crisfern          #+#    #+#             */
-/*   Updated: 2022/11/09 15:40:47 by crisfern         ###   ########.fr       */
+/*   Created: 2022/11/09 15:12:59 by crisfern          #+#    #+#             */
+/*   Updated: 2022/12/02 17:33:53 by crisfern         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ class Cat: public Animal
 		Cat & operator=( Cat & rhs );
 
 		void makeSound( void ) const;
-		Brain *get_CatBrain( void ) const;
+		Brain *getCatBrain( void ) const;
 
 	private:
 		Brain* _catBrain;

@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: crisfern <crisfern@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/09 15:40:22 by crisfern          #+#    #+#             */
-/*   Updated: 2022/11/09 15:40:23 by crisfern         ###   ########.fr       */
+/*   Created: 2022/11/09 15:12:33 by crisfern          #+#    #+#             */
+/*   Updated: 2022/12/05 17:02:40 by crisfern         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ class Animal
 		Animal & operator=( Animal & rhs );
 
 		virtual void makeSound( void ) const = 0;
+		void setType( std::string myType );
 		std::string getType( void ) const;
 
 	protected:

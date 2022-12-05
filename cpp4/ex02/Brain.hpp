@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: crisfern <crisfern@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/09 15:40:34 by crisfern          #+#    #+#             */
-/*   Updated: 2022/11/09 15:40:35 by crisfern         ###   ########.fr       */
+/*   Created: 2022/11/09 15:12:43 by crisfern          #+#    #+#             */
+/*   Updated: 2022/12/02 17:28:19 by crisfern         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ class Brain
 
 		std::string* get_ideas( void );
 		void set_ideas( std::string myidea );
-		int get_n_ideas( void );
+		int get_n_ideas( void ) const;
 
 	private:
 		int _n_ideas;
