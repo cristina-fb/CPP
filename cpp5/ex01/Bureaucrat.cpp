@@ -6,7 +6,7 @@
 /*   By: crisfern <crisfern@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/07 12:00:37 by crisfern          #+#    #+#             */
-/*   Updated: 2022/12/13 17:31:31 by crisfern         ###   ########.fr       */
+/*   Updated: 2022/12/13 18:08:03 by crisfern         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,12 +52,12 @@ Bureaucrat & Bureaucrat::operator=( Bureaucrat &asg )
     return *this;
 }
 
-std::string Bureaucrat::getName( void )
+std::string Bureaucrat::getName( void ) const
 {
     return this->_name;
 }
 
-int Bureaucrat::getGrade( void )
+int Bureaucrat::getGrade( void ) const
 {
     return this->_grade;
 }
