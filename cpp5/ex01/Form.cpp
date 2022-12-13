@@ -6,7 +6,7 @@
 /*   By: crisfern <crisfern@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/07 12:28:58 by crisfern          #+#    #+#             */
-/*   Updated: 2022/12/07 17:46:40 by crisfern         ###   ########.fr       */
+/*   Updated: 2022/12/13 17:40:47 by crisfern         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,10 +38,9 @@ Form::Form( std::string name, int gradeSign, int gradeExec ): _name(name), _grad
 	std::cout << "Form " << this->_name << " Constructor!" << std::endl;
 }
 
-Form::Form( Form & cpy ): _gradeSign(150), _gradeExec(150) //ESTO NO VA ASI
+Form::Form( Form & cpy ): _name(cpy.getName()), _gradeSign(cpy.getGradeSign()), _gradeExec(cpy.getGradeExec()), _isSigned(cpy.getIsSigned())
 {
 	std::cout << "Form Copy Constructor!" << std::endl;
-	*this = cpy;
 }
 
 Form::~Form( void )
@@ -54,7 +53,6 @@ Form & Form::operator=( Form & asg )
 	if (this != &asg)
 	{
 		this->_isSigned = asg.getIsSigned();
-		// Name & grades????
 	}
 	return *this;
 }

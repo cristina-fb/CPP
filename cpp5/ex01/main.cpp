@@ -6,7 +6,7 @@
 /*   By: crisfern <crisfern@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/07 11:31:44 by crisfern          #+#    #+#             */
-/*   Updated: 2022/12/07 17:47:25 by crisfern         ###   ########.fr       */
+/*   Updated: 2022/12/13 17:37:00 by crisfern         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,22 +72,11 @@ int main( void )
     Bureaucrat * pepe = new Bureaucrat("Pepe", 35);
     pepe->signForm(app);
     std::cout << *app << std::endl;
-
-
-    std::cout << std::endl << "------- RES FORM = APP FORM -------" << std::endl;
-    Form *res = new Form();
-    std::cout << *res << std::endl;
-    std::cout << "Sign grade: " << res->getGradeSign() << ", Execution grade: " << res->getGradeExec() << std::endl;
-    *res = *app;
-    std::cout << *res << std::endl;
-    std::cout << "Sign grade: " << res->getGradeSign() << ", Execution grade: " << res->getGradeExec() << std::endl;
-
     
     std::cout << std::endl << "------- DESTRUCTORS -------" << std::endl;
     delete paco;
     delete pepe;
     delete app;
-    delete res;
     std::cout << std::endl << "------- END -------" << std::endl;
     return 0;
 }

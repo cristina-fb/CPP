@@ -6,7 +6,7 @@
 /*   By: crisfern <crisfern@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/07 12:00:37 by crisfern          #+#    #+#             */
-/*   Updated: 2022/12/07 15:54:40 by crisfern         ###   ########.fr       */
+/*   Updated: 2022/12/13 17:31:31 by crisfern         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,10 +17,9 @@ Bureaucrat::Bureaucrat( void ): _name(""), _grade(150)
     std::cout << "Bureaucrat default constructor!" << std::endl;
 }
 
-Bureaucrat::Bureaucrat( Bureaucrat &cpy )
+Bureaucrat::Bureaucrat( Bureaucrat &cpy ): _name(cpy.getName()), _grade(cpy.getGrade())
 {
     std::cout << "Bureaucrat copy destructor!" << std::endl;
-    *this = cpy;
 }
 
 Bureaucrat::Bureaucrat( std::string name, int grade ): _name(name), _grade(grade)
