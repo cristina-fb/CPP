@@ -6,7 +6,7 @@
 /*   By: crisfern <crisfern@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/07 12:00:37 by crisfern          #+#    #+#             */
-/*   Updated: 2022/12/13 18:08:03 by crisfern         ###   ########.fr       */
+/*   Updated: 2022/12/13 19:04:05 by crisfern         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,7 +88,6 @@ void Bureaucrat::decrementGrade( void )
 
 void Bureaucrat::signForm( Form * f )
 {
-    std::string reason;
     try
     {
         f->beSigned(this);

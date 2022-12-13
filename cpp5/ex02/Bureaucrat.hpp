@@ -6,7 +6,7 @@
 /*   By: crisfern <crisfern@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/07 12:03:26 by crisfern          #+#    #+#             */
-/*   Updated: 2022/12/07 15:42:21 by crisfern         ###   ########.fr       */
+/*   Updated: 2022/12/13 18:43:36 by crisfern         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,11 +28,12 @@ class Bureaucrat
 
         Bureaucrat & operator=( Bureaucrat &asg );
 
-        std::string getName( void );
-        int getGrade( void );
+        std::string getName( void ) const;
+        int getGrade( void ) const;
         void incrementGrade( void );
         void decrementGrade( void );
         void signForm( Form * f );
+        void executeForm(Form const & form);
 
         class GradeTooHighException: public std::exception
         {

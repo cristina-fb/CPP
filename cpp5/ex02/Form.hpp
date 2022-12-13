@@ -6,7 +6,7 @@
 /*   By: crisfern <crisfern@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/07 12:29:01 by crisfern          #+#    #+#             */
-/*   Updated: 2022/12/07 17:37:47 by crisfern         ###   ########.fr       */
+/*   Updated: 2022/12/13 18:39:03 by crisfern         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ class Form
 		Form( void );
 		Form( std::string name, int gradeSign, int gradeExec );
 		Form( Form & cpy );
-		~Form( void );
+		virtual ~Form( void );
 
 		Form & operator=( Form & asg );
 
@@ -52,6 +52,7 @@ class Form
 		int getGradeExec( void ) const;
 		bool getIsSigned( void ) const;
 		void beSigned( Bureaucrat *bur );
+		virtual void execute( Bureaucrat const & executor ) const = 0;
 
 	private:
 		const std::string _name;

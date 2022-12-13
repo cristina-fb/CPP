@@ -6,7 +6,7 @@
 /*   By: crisfern <crisfern@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/07 12:00:37 by crisfern          #+#    #+#             */
-/*   Updated: 2022/12/07 15:54:40 by crisfern         ###   ########.fr       */
+/*   Updated: 2022/12/13 19:10:15 by crisfern         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,10 +17,9 @@ Bureaucrat::Bureaucrat( void ): _name(""), _grade(150)
     std::cout << "Bureaucrat default constructor!" << std::endl;
 }
 
-Bureaucrat::Bureaucrat( Bureaucrat &cpy )
+Bureaucrat::Bureaucrat( Bureaucrat &cpy ): _name(cpy.getName()), _grade(cpy.getGrade())
 {
     std::cout << "Bureaucrat copy destructor!" << std::endl;
-    *this = cpy;
 }
 
 Bureaucrat::Bureaucrat( std::string name, int grade ): _name(name), _grade(grade)
@@ -53,12 +52,12 @@ Bureaucrat & Bureaucrat::operator=( Bureaucrat &asg )
     return *this;
 }
 
-std::string Bureaucrat::getName( void )
+std::string Bureaucrat::getName( void ) const
 {
     return this->_name;
 }
 
-int Bureaucrat::getGrade( void )
+int Bureaucrat::getGrade( void ) const
 {
     return this->_grade;
 }
@@ -98,6 +97,19 @@ void Bureaucrat::signForm( Form * f )
     catch(std::exception & e)
     {
         std::cout << "Bureaucrat " << this->_name << " cannot sign form " << f->getName() << " because " << e.what() << std::endl;
+    }
+}
+
+void Bureaucrat::executeForm(Form const & form)
+{
+    try
+    {
+        form.execute(*this);
+        std::cout << "Bureaucrat " << this->_name << " executed form " << form.getName() << std::endl;
+    }
+    catch(std::exception & e)
+    {
+        std::cout << "Bureaucrat " << this->_name << " couldn't execute form " << form.getName() << " because " << e.what() << std::endl;
     }
 }
 
