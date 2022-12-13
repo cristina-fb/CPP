@@ -6,7 +6,7 @@
 /*   By: crisfern <crisfern@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/07 11:31:44 by crisfern          #+#    #+#             */
-/*   Updated: 2022/12/07 11:56:42 by crisfern         ###   ########.fr       */
+/*   Updated: 2022/12/13 17:28:02 by crisfern         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,7 @@ int main( void )
     {
         std::cout << e.what() << std::endl;
     }
+    delete paco;
     std::cout << std::endl;
     std::cout << "------- PACA (1) -------" << std::endl;
     Bureaucrat *paca = new Bureaucrat("Paca", 1);
@@ -109,13 +110,6 @@ int main( void )
         std::cout << e.what() << std::endl;
     }
     std::cout << std::endl;
-    std::cout << "------- PEPE = PACO -------" << std::endl;
-    Bureaucrat *pepe = new Bureaucrat("Pepe", 24);
-    std::cout << *pepe << std::endl;
-    *pepe = *paco;
-    std::cout << *pepe << std::endl;
-    delete paco;
-    delete pepe;
     std::cout << "------- END -------" << std::endl;
     return 0;
 }
