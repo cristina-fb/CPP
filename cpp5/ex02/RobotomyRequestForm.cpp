@@ -6,23 +6,25 @@
 /*   By: crisfern <crisfern@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/07 18:00:50 by crisfern          #+#    #+#             */
-/*   Updated: 2022/12/13 19:23:47 by crisfern         ###   ########.fr       */
+/*   Updated: 2022/12/16 12:36:26 by crisfern         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <cstdlib>
+#include <ctime>
 #include "RobotomyRequestForm.hpp"
 
-RobotomyRequestForm::RobotomyRequestForm( void ): _target("Default")
+RobotomyRequestForm::RobotomyRequestForm( void ): Form("RobotomyRequest", 72, 45), _target("Default")
 {
 	std::cout << "RobotomyRequest Form Default Constructor!" << std::endl;
 }
 	
-RobotomyRequestForm::RobotomyRequestForm( std::string target ): _target(target)
+RobotomyRequestForm::RobotomyRequestForm( std::string target ): Form("RobotomyRequest", 72, 45), _target(target)
 {
 	std::cout << "RobotomyRequest Form Constructor!" << std::endl;
 }
 
-RobotomyRequestForm::RobotomyRequestForm( RobotomyRequestForm & cpy ): _target(cpy.getTarget())
+RobotomyRequestForm::RobotomyRequestForm( RobotomyRequestForm & cpy ): Form("RobotomyRequest", 72, 45), _target(cpy.getTarget())
 {
 	std::cout << "RobotomyRequest Form Copy Constructor!" << std::endl;
 }
@@ -46,7 +48,7 @@ std::string RobotomyRequestForm::getTarget( void ) const
 	return this->_target;
 }
 
-void RobotomyRequestForm::execute( Bureaucrat const & executor ) const //CAMBIAR
+void RobotomyRequestForm::execute( Bureaucrat const & executor ) const
 {
 	if (executor.getGrade() > this->getGradeExec())
 	{
@@ -54,6 +56,18 @@ void RobotomyRequestForm::execute( Bureaucrat const & executor ) const //CAMBIAR
 	}
 	else
 	{
-		std::cout << this->_target << " has been pardoned by Zafod Beeblebrox" << std::endl;
+		std::cout << "SDFJNDFOIVFKLLKSLKSSALLAKLVLK DKAKLDKLSDKSDVVLKSDVVKSD LSWWWWDWDWWCWXXXXWWWXWQW" << std::endl;
+		std::cout << "BKKDFLJ DFGJÑDFK GDFÑJGLÑDFKGJÑDLFKÑGJ DFÑÑGJD FDÑF GÑFDIGJDLFK DLFKLGJÑDLFKÑ D" << std::endl;
+		std::cout << "OIFDUGOIDF UDFOIOG UDFOG SÑDKFWEPORIEPOW 90WR SFKJSDLFK SKFJSDLKFJLSDKFJILSFJLS" << std::endl;
+		srand(time(NULL));
+		int i = rand() % 2;
+		if (i == 0)
+		{
+			std::cout << this->_target << " has been robotomized successfully!" << std::endl;
+		}
+		else
+		{
+			std::cout << "ERROR! " << this->_target << " hasn't been robotomized :(" << std::endl;
+		}
 	}
 }

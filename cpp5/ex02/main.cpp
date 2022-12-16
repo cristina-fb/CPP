@@ -6,7 +6,7 @@
 /*   By: crisfern <crisfern@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/07 11:31:44 by crisfern          #+#    #+#             */
-/*   Updated: 2022/12/13 19:32:26 by crisfern         ###   ########.fr       */
+/*   Updated: 2022/12/16 12:31:05 by crisfern         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ int main( void )
 {
     atexit(leaks);
     Bureaucrat * paco = new Bureaucrat("Paco", 42);
-    PresidentialPardonForm * form1 = new PresidentialPardonForm("Juan Antonio");
+    ShrubberyCreationForm * form1 = new ShrubberyCreationForm("Antonio");
     paco->executeForm(*form1);
     delete form1;
     delete paco;
