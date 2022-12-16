@@ -6,7 +6,7 @@
 /*   By: crisfern <crisfern@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/07 12:00:37 by crisfern          #+#    #+#             */
-/*   Updated: 2022/12/13 19:10:15 by crisfern         ###   ########.fr       */
+/*   Updated: 2022/12/16 15:27:25 by crisfern         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,7 +111,7 @@ void Bureaucrat::executeForm(Form const & form)
     {
         std::cout << "Bureaucrat " << this->_name << " couldn't execute form " << form.getName() << " because " << e.what() << std::endl;
     }
-}
+    }
 
 std::ostream & operator<<( std::ostream & o, Bureaucrat & rhs)
 {

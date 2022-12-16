@@ -6,7 +6,7 @@
 /*   By: crisfern <crisfern@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/07 18:01:00 by crisfern          #+#    #+#             */
-/*   Updated: 2022/12/16 12:31:51 by crisfern         ###   ########.fr       */
+/*   Updated: 2022/12/16 15:30:48 by crisfern         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,24 +49,31 @@ std::string ShrubberyCreationForm::getTarget( void ) const
 
 void ShrubberyCreationForm::execute( Bureaucrat const & executor ) const
 {
-	if (executor.getGrade() > this->getGradeExec())
+	if (this->getIsSigned())
 	{
-		throw(GradeTooLowException());
+		if (executor.getGrade() > this->getGradeExec())
+		{
+			throw(GradeTooLowException());
+		}
+		else
+		{
+			std::string filename = this->_target + "_shrubbery";
+			std::ofstream outfile (filename);
+			outfile << "		               ,@@@@@@@," << std::endl;
+			outfile << "       ,,,.   ,@@@@@@/@@,  .oo8888o." << std::endl;
+			outfile << "   ,&%%&%&&%,@@@@@/@@@@@@,8888\\88/8o" << std::endl;
+			outfile << "  ,%&\\%&&%&&%,@@@\\@@@/@@@88\\88888/88'" << std::endl;
+			outfile << "   %&&%&%&/%&&%@@\\@@/ /@@@88888\\88888'" << std::endl;
+			outfile << "   %&&%/ %&%%&&@@\\ V /@@' `88\\8 `/88'" << std::endl;
+			outfile << "   `&%\\ ` /%&'    |.|        \\ '|8'" << std::endl;
+			outfile << "       |o|        | |         | |" << std::endl;
+			outfile << "       |.|        | |         | |" << std::endl;
+			outfile << "_\\__\\/ ._\\//_/__/  ,\\_//__\\/.  \\_//__/_" << std::endl;
+			outfile.close();
+		}
 	}
 	else
 	{
-		std::string filename = this->_target + "_shrubbery";
-		std::ofstream outfile (filename);
-		outfile << "		               ,@@@@@@@," << std::endl;
-		outfile << "       ,,,.   ,@@@@@@/@@,  .oo8888o." << std::endl;
-		outfile << "   ,&%%&%&&%,@@@@@/@@@@@@,8888\\88/8o" << std::endl;
-		outfile << "  ,%&\\%&&%&&%,@@@\\@@@/@@@88\\88888/88'" << std::endl;
-		outfile << "   %&&%&%&/%&&%@@\\@@/ /@@@88888\\88888'" << std::endl;
-		outfile << "   %&&%/ %&%%&&@@\\ V /@@' `88\\8 `/88'" << std::endl;
-		outfile << "   `&%\\ ` /%&'    |.|        \\ '|8'" << std::endl;
-		outfile << "       |o|        | |         | |" << std::endl;
-		outfile << "       |.|        | |         | |" << std::endl;
-		outfile << "_\\__\\/ ._\\//_/__/  ,\\_//__\\/.  \\_//__/_" << std::endl;
-		outfile.close();
+		throw(FormNotSigned());
 	}
 }

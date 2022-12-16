@@ -6,7 +6,7 @@
 /*   By: crisfern <crisfern@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/07 12:29:01 by crisfern          #+#    #+#             */
-/*   Updated: 2022/12/13 18:39:03 by crisfern         ###   ########.fr       */
+/*   Updated: 2022/12/16 15:27:56 by crisfern         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,15 @@ class Form
 				const char * what( void ) const throw()
 				{
 					return("grade too low :(");
+				}
+		};
+
+		class FormNotSigned: public std::exception
+		{
+			public:
+				const char * what( void ) const throw()
+				{
+					return("form isn't signed :(");
 				}
 		};
 

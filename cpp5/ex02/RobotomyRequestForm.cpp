@@ -6,7 +6,7 @@
 /*   By: crisfern <crisfern@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/07 18:00:50 by crisfern          #+#    #+#             */
-/*   Updated: 2022/12/16 12:36:26 by crisfern         ###   ########.fr       */
+/*   Updated: 2022/12/16 15:30:00 by crisfern         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,24 +50,31 @@ std::string RobotomyRequestForm::getTarget( void ) const
 
 void RobotomyRequestForm::execute( Bureaucrat const & executor ) const
 {
-	if (executor.getGrade() > this->getGradeExec())
+	if (this->getIsSigned())
 	{
-		throw(GradeTooLowException());
-	}
-	else
-	{
-		std::cout << "SDFJNDFOIVFKLLKSLKSSALLAKLVLK DKAKLDKLSDKSDVVLKSDVVKSD LSWWWWDWDWWCWXXXXWWWXWQW" << std::endl;
-		std::cout << "BKKDFLJ DFGJÑDFK GDFÑJGLÑDFKGJÑDLFKÑGJ DFÑÑGJD FDÑF GÑFDIGJDLFK DLFKLGJÑDLFKÑ D" << std::endl;
-		std::cout << "OIFDUGOIDF UDFOIOG UDFOG SÑDKFWEPORIEPOW 90WR SFKJSDLFK SKFJSDLKFJLSDKFJILSFJLS" << std::endl;
-		srand(time(NULL));
-		int i = rand() % 2;
-		if (i == 0)
+		if (executor.getGrade() > this->getGradeExec())
 		{
-			std::cout << this->_target << " has been robotomized successfully!" << std::endl;
+			throw(GradeTooLowException());
 		}
 		else
 		{
-			std::cout << "ERROR! " << this->_target << " hasn't been robotomized :(" << std::endl;
+			std::cout << "SDFJNDFOIVFKLLKSLKSSALLAKLVLK DKAKLDKLSDKSDVVLKSDVVKSD LSWWWWDWDWWCWXXXXWWWXWQW" << std::endl;
+			std::cout << "BKKDFLJ DFGJÑDFK GDFÑJGLÑDFKGJÑDLFKÑGJ DFÑÑGJD FDÑF GÑFDIGJDLFK DLFKLGJÑDLFKÑ D" << std::endl;
+			std::cout << "OIFDUGOIDF UDFOIOG UDFOG SÑDKFWEPORIEPOW 90WR SFKJSDLFK SKFJSDLKFJLSDKFJILSFJLS" << std::endl;
+			srand(time(NULL));
+			int i = rand() % 2;
+			if (i == 0)
+			{
+				std::cout << this->_target << " has been robotomized successfully!" << std::endl;
+			}
+			else
+			{
+				std::cout << "ERROR! " << this->_target << " hasn't been robotomized :(" << std::endl;
+			}
 		}
+	}
+	else
+	{
+		throw(FormNotSigned());
 	}
 }
