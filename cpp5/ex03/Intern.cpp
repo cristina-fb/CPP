@@ -6,7 +6,7 @@
 /*   By: crisfern <crisfern@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/16 15:42:52 by crisfern          #+#    #+#             */
-/*   Updated: 2022/12/16 17:42:02 by crisfern         ###   ########.fr       */
+/*   Updated: 2022/12/19 12:30:27 by crisfern         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,10 +19,8 @@ Intern::Intern( void )
 
 Intern::Intern( Intern & cpy )
 {
+	(void) cpy;
 	std::cout << "Intern Copy Constructor!" << std::endl;
-	if (this != &cpy)
-	{
-	}
 }
 
 Intern::~Intern( void )
@@ -32,9 +30,7 @@ Intern::~Intern( void )
 
 Intern & Intern::operator=( Intern & asg )
 {
-	if (this != &asg)
-	{
-	}
+	(void) asg;
 	return *this;
 }
 
