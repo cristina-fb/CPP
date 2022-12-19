@@ -6,7 +6,7 @@
 /*   By: crisfern <crisfern@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/07 12:28:58 by crisfern          #+#    #+#             */
-/*   Updated: 2022/12/13 18:40:08 by crisfern         ###   ########.fr       */
+/*   Updated: 2022/12/19 14:34:02 by crisfern         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,5 +100,6 @@ std::ostream & operator<<( std::ostream & o, Form & rhs)
 	{
 		std::cout << " is not signed!";
 	}
+	std::cout << " Grade to sign is " << rhs.getGradeSign() << " and grade to execute is " << rhs.getGradeExec();
     return o;
 }

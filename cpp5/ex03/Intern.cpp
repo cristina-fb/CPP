@@ -6,7 +6,7 @@
 /*   By: crisfern <crisfern@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/16 15:42:52 by crisfern          #+#    #+#             */
-/*   Updated: 2022/12/19 12:30:27 by crisfern         ###   ########.fr       */
+/*   Updated: 2022/12/19 14:39:22 by crisfern         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,14 +49,17 @@ Form * Intern::makeForm( std::string formName, std::string formTarget) const
 	{
 		case 0:
 		{
+			std::cout << "Intern creates " << formName << std::endl;
 			return new ShrubberyCreationForm(formTarget);
 		}
 		case 1:
 		{
+			std::cout << "Intern creates " << formName << std::endl;
 			return new RobotomyRequestForm(formTarget);
 		}
 		case 2:
 		{
+			std::cout << "Intern creates " << formName << std::endl;
 			return new PresidentialPardonForm(formTarget);
 		}
 		default:
