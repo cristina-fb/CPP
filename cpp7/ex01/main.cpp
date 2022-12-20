@@ -1,35 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   whatever.hpp                                       :+:      :+:    :+:   */
+/*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: crisfern <crisfern@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/12/20 16:24:06 by crisfern          #+#    #+#             */
-/*   Updated: 2022/12/20 17:02:41 by crisfern         ###   ########.fr       */
+/*   Created: 2022/12/20 16:39:13 by crisfern          #+#    #+#             */
+/*   Updated: 2022/12/20 17:29:34 by crisfern         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-template<typename T>
-void swap(T & a, T & b)
+#include <iostream>
+#include "iter.hpp"
+
+int sumar1(int a)
 {
-	T aux = a;
-	a = b;
-	b = aux;
+	return (a+1);
 }
 
-template<typename T>
-T & min(T & a, T & b)
+int main( void )
 {
-	if (a < b)
-		return a;
-	return b;
-}
+	char arr[3] = {'a', 'b', 'c'};
 
-template<typename T>
-T & max(T & a, T & b)
-{
-	if (a > b)
-		return a;
-	return b;
+	std::cout << arr[0] << arr[1] << arr[2] << std::endl;
+	iter(arr, 3, &sumar1);
+	std::cout << arr[0] << arr[1] << arr[2] << std::endl;
+	return 0;
 }
