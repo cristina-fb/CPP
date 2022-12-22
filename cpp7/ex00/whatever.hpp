@@ -6,9 +6,12 @@
 /*   By: crisfern <crisfern@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/20 16:24:06 by crisfern          #+#    #+#             */
-/*   Updated: 2022/12/20 17:02:41 by crisfern         ###   ########.fr       */
+/*   Updated: 2022/12/22 12:07:07 by crisfern         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#ifndef WHATEVER_HPP
+# define WHATEVER_HPP
 
 template<typename T>
 void swap(T & a, T & b)
@@ -33,3 +36,4 @@ T & max(T & a, T & b)
 		return a;
 	return b;
 }
+#endif
