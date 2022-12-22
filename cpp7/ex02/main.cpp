@@ -6,16 +6,22 @@
 /*   By: crisfern <crisfern@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/20 17:37:29 by crisfern          #+#    #+#             */
-/*   Updated: 2022/12/20 17:37:54 by crisfern         ###   ########.fr       */
+/*   Updated: 2022/12/22 11:35:25 by crisfern         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <iostream>
-#include <Array.hpp>
-
+#include "Array.hpp"
 #define MAX_VAL 750
+
+void leaks( void )
+{
+    system("leaks -q array");
+}
+
 int main(int, char**)
 {
+    atexit(leaks);
     Array<int> numbers(MAX_VAL);
     int* mirror = new int[MAX_VAL];
     srand(time(NULL));
