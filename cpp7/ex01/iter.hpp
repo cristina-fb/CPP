@@ -6,9 +6,12 @@
 /*   By: crisfern <crisfern@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/20 16:39:15 by crisfern          #+#    #+#             */
-/*   Updated: 2022/12/20 17:12:25 by crisfern         ###   ########.fr       */
+/*   Updated: 2022/12/22 12:25:18 by crisfern         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#ifndef ITER_HPP
+# define ITER_HPP
 
 template<typename X, typename Y, typename Z>
 void iter(X * arr, Y num, Z * fun)
@@ -18,3 +21,4 @@ void iter(X * arr, Y num, Z * fun)
 		arr[i] = fun(arr[i]);
 	}
 }
+#endif

@@ -6,7 +6,7 @@
 /*   By: crisfern <crisfern@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/20 16:39:13 by crisfern          #+#    #+#             */
-/*   Updated: 2022/12/20 17:29:34 by crisfern         ###   ########.fr       */
+/*   Updated: 2022/12/22 12:30:48 by crisfern         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,10 +20,16 @@ int sumar1(int a)
 
 int main( void )
 {
-	char arr[3] = {'a', 'b', 'c'};
+	char carr[3] = {'a', 'b', 'c'};
+	int iarr[3] = {1, 2, 3};
 
-	std::cout << arr[0] << arr[1] << arr[2] << std::endl;
-	iter(arr, 3, &sumar1);
-	std::cout << arr[0] << arr[1] << arr[2] << std::endl;
+	std::cout << "Sum 1 to Char Array: " << std::endl;
+	std::cout << "Before: " << carr[0] << carr[1] << carr[2] << std::endl;
+	iter(carr, 3, &sumar1);
+	std::cout << "After: " << carr[0] << carr[1] << carr[2] << std::endl;
+	std::cout << "Sum 1 to Int Array: " << std::endl;
+	std::cout << "Before: " << iarr[0] << iarr[1] << iarr[2] << std::endl;
+	iter(iarr, 3, &sumar1);
+	std::cout << "After: " << iarr[0] << iarr[1] << iarr[2] << std::endl;
 	return 0;
 }
