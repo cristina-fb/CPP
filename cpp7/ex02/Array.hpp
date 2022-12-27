@@ -6,12 +6,13 @@
 /*   By: crisfern <crisfern@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/20 17:37:57 by crisfern          #+#    #+#             */
-/*   Updated: 2022/12/22 11:36:01 by crisfern         ###   ########.fr       */
+/*   Updated: 2022/12/27 14:54:56 by crisfern         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef ARRAY_HPP //RECORDAR PROTEGER LOS HPP
+#ifndef ARRAY_HPP
 # define ARRAY_HPP
+
 template<typename T>
 class Array
 {
@@ -21,18 +22,27 @@ class Array
 		{
 			std::cout << "Array constructor!" << std::endl;
 			this->_arr = new T[n];
-			for (unsigned int i = 0; i < n; i++)
+			if (this->_arr)
 			{
-				this->_arr[i] = 0;
+				for (unsigned int i = 0; i < n; i++)
+				{
+					this->_arr[i] = 0;
+				}
 			}
 		}
-		Array( Array & rhs ): _arr(0)
+		Array( Array & rhs ): _arr(0), _n(0)
 		{
 			std::cout << "Array copy constructor!" << std::endl;
 			*this = rhs;
 		}
-		~Array( void ) { std::cout << "Array destructor!" << std::endl; }
-
+		~Array( void )
+		{
+			std::cout << "Array destructor!" << std::endl;
+			if (this->_arr != 0)
+			{
+				delete this->_arr;
+			}
+		}
 		Array & operator=( Array & asg )
 		{
 			if (this != &asg)
@@ -43,9 +53,12 @@ class Array
 				}
 				this->_n = asg.getSize();
 				this->_arr = new T[this->_n];
-				for (unsigned int i = 0; i < this->_n; i++)
+				if (this->_arr)
 				{
-					this->_arr[i] = asg[i];
+					for (unsigned int i = 0; i < this->_n; i++)
+					{
+						this->_arr[i] = asg[i];
+					}
 				}
 			}
 			return *this;
@@ -59,7 +72,6 @@ class Array
 				}
 		};
 		int getSize( void ) const { return this->_n; }
-		T * getArr( void ) const { return this->_arr; }
 		T & operator[]( unsigned int i ) 
 		{ 
 			if ((i < 0) || (i > this->_n))
