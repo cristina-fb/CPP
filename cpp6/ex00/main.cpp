@@ -6,13 +6,14 @@
 /*   By: crisfern <crisfern@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/20 10:58:36 by crisfern          #+#    #+#             */
-/*   Updated: 2022/12/20 12:14:42 by crisfern         ###   ########.fr       */
+/*   Updated: 2023/01/03 17:34:02 by crisfern         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <iostream>
+#include "Converter.hpp"
 
-void charConvertion( std::string str )
+/*void charConvertion( std::string str )
 {
 	try
 	{
@@ -66,7 +67,7 @@ void doubleConvertion( std::string str )
 		(void)e;
 		std::cout << "not convertible: ";
 	}
-}
+}*/
 
 int main ( int argc, char **argv )
 {
@@ -75,17 +76,9 @@ int main ( int argc, char **argv )
 		std::cout << "Incorrect number of arguments!" << std::endl;
 		return -1;
 	}
-	std::cout << "char: '";
-	charConvertion(argv[1]);
-	std::cout << "'" << std::endl;
-	std::cout << "int: ";
-	intConvertion(argv[1]);
-	std::cout << std::endl;
-	std::cout << "float: ";
-	floatConvertion(argv[1]);
-	std::cout << std::endl;
-	std::cout << "double: ";
-	doubleConvertion(argv[1]);
-	std::cout << std::endl;
+
+	Converter *a = new Converter(argv[1]);
+	a->convert();
+	std::cout << *a << std::endl;
 	return 0;
 }
