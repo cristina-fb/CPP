@@ -6,13 +6,18 @@
 /*   By: crisfern <crisfern@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/20 14:03:08 by crisfern          #+#    #+#             */
-/*   Updated: 2023/01/03 17:59:01 by crisfern         ###   ########.fr       */
+/*   Updated: 2023/01/04 15:13:37 by crisfern         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef CONVERTER_CLASS_HPP
 # define CONVERTER_CLASS_HPP
 # include <iostream>
+# include <iomanip>
+# include <cctype>
+# include <sstream>
+# include <limits>
+# include <numeric>
 # include <stdlib.h>
 
 class Converter

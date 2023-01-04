@@ -6,40 +6,119 @@
 /*   By: crisfern <crisfern@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/20 14:03:05 by crisfern          #+#    #+#             */
-/*   Updated: 2023/01/03 18:02:53 by crisfern         ###   ########.fr       */
+/*   Updated: 2023/01/04 18:00:32 by crisfern         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Converter.hpp"
+
+bool isInt(std::string str)
+{
+    unsigned long i;
+    for (i = 0; i < str.length(); i++)
+        if (!std::isspace(str[i]))
+            break;
+    std::cout << i << " " << str.length() << std::endl;
+    if (i >= str.length())
+        return false;
+    if ((str[i] == '+') || (str[i] == '-'))
+        i++;
+    if (i >= str.length())
+        return false;
+    for (unsigned long j = i; j < str.length(); j++)
+        if (!isdigit(str[j]))
+            return false;
+    return true;
+}
+
+bool isDouble(std::string str)
+{
+    unsigned long i, j;
+    int dot = 0;
+    for (i = 0; i < str.length(); i++)
+        if (!std::isspace(str[i]))
+            break;
+    if (i >= str.length())
+        return false;
+    if ((str[i] == '+') || (str[i] == '-'))
+        i++;
+    if (i >= str.length())
+        return false;
+    for (j = i; j < str.length(); j++)
+    {
+        if (!isdigit(str[j]) && (str[j] != '.'))
+            return false;
+        if (str[j] == '.')
+            dot++;
+        if ((j == str.length() - 1) && (!isdigit(str[j])))
+            return false;
+    }
+    if ((dot != 1))
+        return false;
+    return true;
+}
+
+bool isFloat(std::string str)
+{
+    unsigned long i, j;
+    int dot = 0;
+    for (i = 0; i < str.length(); i++)
+        if (!std::isspace(str[i]))
+            break;
+    if (i >= str.length())
+        return false;
+    if ((str[i] == '+') || (str[i] == '-'))
+        i++;
+    if (i >= str.length())
+        return false;
+    for (j = i; j < str.length() - 1; j++)
+    {
+        if (!isdigit(str[j]) && (str[j] != '.'))
+            return false;
+        if (str[j] == '.')
+            dot++;
+        if ((j == str.length() - 2) && (!isdigit(str[j])))
+            return false;
+    }
+    if (dot != 1)
+        return false;
+    return true;
+}
 
 Converter::Converter( void ): _type(-1), _c(0), _i(0), _f(0.0f), _d(0.0)
 {}
 
 Converter::Converter( std::string str ): _type(-1), _c(0), _i(0), _f(0.0f), _d(0.0)
 {
-    bool flag = false;
-    char *end;
-    if ((str.length() == 1) && ((str[0] < '0') || (str[0] > '9')))
+    std::stringstream o;
+    
+    if ((str.length() == 1) && !isdigit(str[0]))
     {
-        this->_type = 0;
         this->_c = str[0];
+        this->_type = 0;
         return;
     }
-    if ((str == "-inff") || (str == "+inff") || (str == "inff") || (str == "nanf"))
+    if ((str == "-inff") || (str == "+inff") || (str == "inff") || (str == "nanf") || (str == "45.6") || isFloat(str))
     {
+        o << str;
+        o >> this->_f;
         this->_type = 2;
-        this->_f = strtof(&str, &end);
         return;
     }
-    if ((str == "-inf") || (str == "+inf") || (str == "inf") || (str == "nan"))
+    if ((str == "-inf") || (str == "+inf") || (str == "inf") || (str == "nan") || isDouble(str))
     {
+        o << str;
+        o >> this->_d;
         this->_type = 3;
-        this->_d = strtod(&str, &end);
         return;
     }
-    /*for (int i = 0; i < str.length(); i++)
+    if (isInt(str))
     {
-    }*/
+        o << str;
+        o >> this->_i; 
+        this->_type = 1;
+        return ;
+    }
 }
 
 Converter::Converter( Converter & cpy )
@@ -124,9 +203,26 @@ double Converter::getD( void ) const
 }
 std::ostream & operator<<( std::ostream & o, Converter & rhs)
 {
-    std::cout << "char: '" << rhs.getC() << "'" << std::endl;
+    if (rhs.getType() == -1)
+    {
+        std::cout << "Not a valid literal" << std::endl;
+        return o;
+    }
+    if ((rhs.getType() == 0) || (rhs.getType() == 1))
+    {
+        std::cout << std::fixed << std::setprecision(1);
+    }
+    std::cout << "char: ";
+    if (isprint(rhs.getC()))
+    { 
+        std::cout << "'" << rhs.getC() << "'" << std::endl;
+    }
+    else
+    {
+        std::cout << "Non displayable" << std::endl;
+    }
 	std::cout << "int: " << rhs.getI() << std::endl;
 	std::cout << "float: " << rhs.getF() << "f" << std::endl;
-	std::cout << "double: " << rhs.getD() <<std::endl;
+	std::cout << "double: " << rhs.getD() << std::endl;
     return o;
 }
