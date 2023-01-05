@@ -6,7 +6,7 @@
 /*   By: crisfern <crisfern@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/20 14:03:08 by crisfern          #+#    #+#             */
-/*   Updated: 2023/01/04 15:13:37 by crisfern         ###   ########.fr       */
+/*   Updated: 2023/01/05 15:09:11 by crisfern         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,6 @@
 # include <iomanip>
 # include <cctype>
 # include <sstream>
-# include <limits>
-# include <numeric>
-# include <stdlib.h>
 
 class Converter
 {
@@ -31,16 +28,18 @@ class Converter
 		Converter & operator=( Converter & asg );
 		void convert( void );
 
+		std::string getStr( void ) const;
 		int getType( void ) const;
 		char getC( void ) const;
 		int getI( void ) const;
 		float getF( void ) const;
 		double getD( void ) const;
-	
+
 	private:
+		std::string _str;
 		int _type;
 		char _c;
-		int	_i;
+		int _i;
 		float _f;
 		double _d;
 };
