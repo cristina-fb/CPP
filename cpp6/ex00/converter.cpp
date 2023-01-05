@@ -6,7 +6,7 @@
 /*   By: crisfern <crisfern@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/20 14:03:05 by crisfern          #+#    #+#             */
-/*   Updated: 2023/01/05 15:30:33 by crisfern         ###   ########.fr       */
+/*   Updated: 2023/01/05 16:39:38 by crisfern         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -116,6 +116,10 @@ void Converter::convert( void )
             this->_i = static_cast<int>(this->_c);
             this->_f = static_cast<float>(this->_c);
             this->_d = static_cast<double>(this->_c);
+            std::cout << "char: '" << this->_c << "'" << std::endl;
+	        std::cout << "int: " << this->_i << std::endl;
+            std::cout << std::fixed << std::setprecision(1) << "float: " << this->_f << "f" << std::endl;
+	        std::cout << "double: " << this->_d << std::endl;
             return;
         }
         case 1:
@@ -123,6 +127,13 @@ void Converter::convert( void )
             this->_c = static_cast<char>(this->_i);
             this->_f = static_cast<float>(this->_i);
             this->_d = static_cast<double>(this->_i);
+            if ((this->_i > CHAR_MAX) || (this->_i < CHAR_MIN) || !isprint(this->_c))
+                std::cout << "char: non displayable" << std::endl;
+            else
+                std::cout << "char: '" << this->_c << "'" << std::endl;
+	        std::cout << "int: " << this->_i << std::endl;
+            std::cout << std::fixed << std::setprecision(1) << "float: " << this->_f << "f" << std::endl;
+	        std::cout << "double: " << this->_d << std::endl;
             return;
         }
         case 2:
@@ -130,6 +141,13 @@ void Converter::convert( void )
             this->_c = static_cast<char>(this->_f);
             this->_i = static_cast<int>(this->_f);
             this->_d = static_cast<double>(this->_f);
+            if ((this->_i > CHAR_MAX) || (this->_i < CHAR_MIN) || !isprint(this->_c))
+                std::cout << "char: non displayable" << std::endl;
+            else
+                std::cout << "char: '" << this->_c << "'" << std::endl;
+	        std::cout << "int: " << this->_i << std::endl;
+            std::cout << "float: " << this->_f << "f" << std::endl;
+	        std::cout << "double: " << this->_d << std::endl;
             return;
         }
         case 3:
@@ -137,6 +155,21 @@ void Converter::convert( void )
             this->_c = static_cast<char>(this->_d);
             this->_i = static_cast<int>(this->_d);
             this->_f = static_cast<float>(this->_d);
+            if ((this->_i > CHAR_MAX) || (this->_i < CHAR_MIN) || !isprint(this->_c))
+                std::cout << "char: non displayable" << std::endl;
+            else
+                std::cout << "char: '" << this->_c << "'" << std::endl;
+	        std::cout << "int: " << this->_i << std::endl;
+            std::cout << std::fixed << "float: " << this->_f << "f" << std::endl;
+	        std::cout << "double: " << this->_d << std::endl;
+            return;
+        }
+        default:
+        {
+            std::cout << "char: impossible" << std::endl;
+	        std::cout << "int: impossible" << std::endl;
+            std::cout << "float: impossible" << std::endl;
+	        std::cout << "double: impossible" << std::endl;
             return;
         }
     }
@@ -170,31 +203,4 @@ float Converter::getF( void ) const
 double Converter::getD( void ) const
 {
     return this->_d;
-}
-std::ostream & operator<<( std::ostream & o, Converter & rhs)
-{
-    if (rhs.getType() == -1)
-    {
-        //todo imposible
-    }
-    if ((rhs.getStr() == "nan") || (rhs.getStr() == "nanf") || (rhs.getStr() == "inf") || (rhs.getStr() == "inff") ||
-        (rhs.getStr() == "+inf") || (rhs.getStr() == "+inff") || (rhs.getStr() == "-inf") || (rhs.getStr() == "-inff"))
-    {
-        std::cout << "char: impossible" << std::endl;
-        std::cout << "int: impossible" << std::endl;
-    }
-    else
-    {
-        if ((rhs.getType() == 0) || (rhs.getType() == 1))
-            std::cout << std::fixed << std::setprecision(1);
-        std::cout << "char: ";
-        if (isprint(rhs.getC()))
-            std::cout << "'" << rhs.getC() << "'" << std::endl;
-        else
-            std::cout << "Non displayable" << std::endl;
-        std::cout << "int: " << rhs.getI() << std::endl;
-    }
-	std::cout << "float: " << rhs.getF() << "f" << std::endl;
-	std::cout << "double: " << rhs.getD() << std::endl;
-    return o;
 }

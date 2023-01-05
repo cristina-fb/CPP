@@ -6,7 +6,7 @@
 /*   By: crisfern <crisfern@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/20 10:58:36 by crisfern          #+#    #+#             */
-/*   Updated: 2023/01/04 17:10:50 by crisfern         ###   ########.fr       */
+/*   Updated: 2023/01/05 16:21:46 by crisfern         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,6 @@ int main ( int argc, char **argv )
 	}
 
 	Converter *a = new Converter(argv[1]);
-	std::cout << *a;
+	delete a;
 	return 0;
 }

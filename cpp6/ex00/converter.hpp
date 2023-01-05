@@ -6,7 +6,7 @@
 /*   By: crisfern <crisfern@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/20 14:03:08 by crisfern          #+#    #+#             */
-/*   Updated: 2023/01/05 15:09:11 by crisfern         ###   ########.fr       */
+/*   Updated: 2023/01/05 16:21:32 by crisfern         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 # include <iomanip>
 # include <cctype>
 # include <sstream>
+# include <limits>
 
 class Converter
 {
@@ -43,5 +44,4 @@ class Converter
 		float _f;
 		double _d;
 };
-std::ostream & operator<<( std::ostream & o, Converter & rhs);
 #endif
