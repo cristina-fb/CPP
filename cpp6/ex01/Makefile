@@ -14,18 +14,22 @@ CXX = clang++
 CXXFLAGS = -Wall -Werror -Wextra -std=c++98 -pedantic
 NAME = serialize
 SRC = main.cpp Data.cpp functions.cpp
-OBJ = $(SRC:.cpp=.o)
+OBJ_DIR = ./obj/
+OBJ = $(addprefix $(OBJ_DIR), $(SRC:.cpp=.o))
+DEP = $(addprefix $(OBJ_DIR), $(SRC:.cpp=.d))
 
 all : $(NAME)
 
 $(NAME): $(OBJ)
 	$(CXX) $(CXXFLAGS) $(OBJ) -o $(NAME)
 
-%.o: %.cpp %.hpp
-	$(CXX) $(CXXFLAGS) -c $<
+$(OBJ_DIR)%.o: %.cpp
+	@mkdir -p $(OBJ_DIR)
+	$(CXX) $(CXXFLAGS) -MMD -c $< -o $@
+-include $(DEP)
 
 clean:
-	rm -rf $(OBJ)
+	rm -rf $(DEP) $(OBJ) $(OBJ_DIR)
 
 fclean: clean
 	rm -rf $(NAME)

@@ -14,19 +14,22 @@ CXX = clang++
 CXXFLAGS = -Wall -Werror -Wextra -std=c++98 -pedantic
 NAME = identify
 SRC = main.cpp functions.cpp
-HDR = A.hpp B.hpp C.hpp Base.hpp
-OBJ = $(SRC:.cpp=.o)
+OBJ_DIR = ./obj/
+OBJ = $(addprefix $(OBJ_DIR), $(SRC:.cpp=.o))
+DEP = $(addprefix $(OBJ_DIR), $(SRC:.cpp=.d))
 
 all : $(NAME)
 
 $(NAME): $(OBJ)
 	$(CXX) $(CXXFLAGS) $(OBJ) -o $(NAME)
 
-%.o: %.cpp $(HDR)
-	$(CXX) $(CXXFLAGS) -c $<
+$(OBJ_DIR)%.o: %.cpp
+	@mkdir -p $(OBJ_DIR)
+	$(CXX) $(CXXFLAGS) -MMD -c $<
+-include $(DEP)
 
 clean:
-	rm -rf $(OBJ)
+	rm -rf $(DEP) $(OBJ) $(OBJ_DIR)
 
 fclean: clean
 	rm -rf $(NAME)
