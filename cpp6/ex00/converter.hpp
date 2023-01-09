@@ -6,7 +6,7 @@
 /*   By: crisfern <crisfern@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/20 14:03:08 by crisfern          #+#    #+#             */
-/*   Updated: 2023/01/05 16:21:32 by crisfern         ###   ########.fr       */
+/*   Updated: 2023/01/09 16:29:34 by crisfern         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,12 @@
 # include <cctype>
 # include <sstream>
 # include <limits>
+# define INT_MAX_F static_cast<float>(INT_MAX)
+# define INT_MIN_F static_cast<float>(INT_MIN) - 1.0
+# define INT_MAX_D static_cast<double>(INT_MAX) + 1.0
+# define INT_MIN_D static_cast<double>(INT_MIN) - 1.0
+# define FLOAT_MAX static_cast<double>(std::numeric_limits<float>::max())
+# define FLOAT_MIN -static_cast<double>(std::numeric_limits<float>::max())
 
 class Converter
 {

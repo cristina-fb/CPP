@@ -6,7 +6,7 @@
 /*   By: crisfern <crisfern@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/20 14:03:05 by crisfern          #+#    #+#             */
-/*   Updated: 2023/01/05 16:39:38 by crisfern         ###   ########.fr       */
+/*   Updated: 2023/01/09 17:30:43 by crisfern         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,29 +18,26 @@ Converter::Converter( void ): _str(""), _type(-1), _c(0), _i(0), _f(0.0f), _d(0.
 Converter::Converter( std::string str ): _str(str), _type(-1), _c(0), _i(0), _f(0.0f), _d(0.0)
 {
     std::stringstream o;
-
-    if ((this->_str == "inff") || (this->_str == "-inff") || (this->_str == "+inff"))
+    
+    if ((this->_str == "inff") || (this->_str == "-inff") || (this->_str == "+inff") || (this->_str == "nanf"))
     {
-        std::cout << "*** FORM FLOAT ***" << std::endl;
         this->_str = this->_str.substr(0, this->_str.length() - 1);
         o << this->_str;
-        o >> this->_d;
-        this->_type = 3;
+        o >> this->_f;
+        this->_type = 2;
         this->convert();
-        return ;
+        return;
     }
-    if ((this->_str == "inf") || (this->_str == "-inf") || (this->_str == "+inf"))
+    if ((this->_str == "inf") || (this->_str == "-inf") || (this->_str == "+inf") || (this->_str == "nan"))
     {
-        std::cout << "*** FORM DOUBLE ***" << std::endl;
         o << this->_str;
         o >> this->_d;
         this->_type = 3;
         this->convert();
-        return ;
+        return;
     } 
     if ((this->_str.length() == 1) && !isdigit(this->_str[0]))
     {
-        std::cout << "*** FORM CHAR ***" << std::endl;
         this->_c = this->_str[0];
         this->_type = 0;
         this->convert();
@@ -48,19 +45,17 @@ Converter::Converter( std::string str ): _str(str), _type(-1), _c(0), _i(0), _f(
     }
     if (this->_str.find('.') == std::string::npos)
     {
-        std::cout << "*** FORM INT ***" << std::endl;
         o << this->_str;
         o >> this->_i;
         if(!o.fail())
         {
             this->_type = 1;
             this->convert();
-            return ;
+            return;
         }
     }
-    if ((this->_str[this->_str.length() - 1] == 'f') || o.fail())
+    else if (this->_str[this->_str.length() - 1] == 'f')
     {
-        std::cout << "*** FORM FLOAT ***" << std::endl;
         if (this->_str[this->_str.length() - 1] == 'f')
             this->_str = this->_str.substr(0, this->_str.length() - 1);
         o << this->_str;
@@ -69,17 +64,23 @@ Converter::Converter( std::string str ): _str(str), _type(-1), _c(0), _i(0), _f(
         {
             this->_type = 2;
             this->convert();
-            return ;
+            return;
         }
     }
-    std::cout << "*** FORM DOUBLE ***" << std::endl;
+    if (this->_str[this->_str.length() - 1] == 'f')
+        this->_str = this->_str.substr(0, this->_str.length() - 1);
+    if (o.fail())
+    {
+        o.clear();
+        o.str("");
+    }
     o << this->_str;
     o >> this->_d;
     if(!o.fail())
     {
         this->_type = 3;
         this->convert();
-        return ;
+        return;
     }
     this->convert();
 }
@@ -127,7 +128,9 @@ void Converter::convert( void )
             this->_c = static_cast<char>(this->_i);
             this->_f = static_cast<float>(this->_i);
             this->_d = static_cast<double>(this->_i);
-            if ((this->_i > CHAR_MAX) || (this->_i < CHAR_MIN) || !isprint(this->_c))
+            if ((this->_i > CHAR_MAX) || (this->_i < CHAR_MIN))
+                std::cout << "char: impossible" << std::endl;
+            else if (!isprint(this->_c))
                 std::cout << "char: non displayable" << std::endl;
             else
                 std::cout << "char: '" << this->_c << "'" << std::endl;
@@ -141,13 +144,18 @@ void Converter::convert( void )
             this->_c = static_cast<char>(this->_f);
             this->_i = static_cast<int>(this->_f);
             this->_d = static_cast<double>(this->_f);
-            if ((this->_i > CHAR_MAX) || (this->_i < CHAR_MIN) || !isprint(this->_c))
+            if ((this->_i > CHAR_MAX) || (this->_i < CHAR_MIN))
+                std::cout << "char: impossible" << std::endl;
+            else if (!isprint(this->_c))
                 std::cout << "char: non displayable" << std::endl;
             else
                 std::cout << "char: '" << this->_c << "'" << std::endl;
-	        std::cout << "int: " << this->_i << std::endl;
-            std::cout << "float: " << this->_f << "f" << std::endl;
-	        std::cout << "double: " << this->_d << std::endl;
+            if ((this->_f >= INT_MAX_F) || (this->_f <= INT_MIN_F) || (this->_str == "nan"))
+                std::cout << "int: impossible" << std::endl;
+            else
+	            std::cout << "int: " << this->_i << std::endl;
+            std::cout << std::fixed << "float: " << this->_f << "f" << std::endl;
+	        std::cout << std::fixed << "double: " << this->_d << std::endl;
             return;
         }
         case 3:
@@ -155,13 +163,21 @@ void Converter::convert( void )
             this->_c = static_cast<char>(this->_d);
             this->_i = static_cast<int>(this->_d);
             this->_f = static_cast<float>(this->_d);
-            if ((this->_i > CHAR_MAX) || (this->_i < CHAR_MIN) || !isprint(this->_c))
+            if ((this->_i > CHAR_MAX) || (this->_i < CHAR_MIN))
+                std::cout << "char: impossible" << std::endl;
+            else if (!isprint(this->_c))
                 std::cout << "char: non displayable" << std::endl;
             else
                 std::cout << "char: '" << this->_c << "'" << std::endl;
-	        std::cout << "int: " << this->_i << std::endl;
-            std::cout << std::fixed << "float: " << this->_f << "f" << std::endl;
-	        std::cout << "double: " << this->_d << std::endl;
+            if ((this->_d >= INT_MAX_D) || (this->_d <= INT_MIN_D) || (this->_str == "nan"))
+                std::cout << "int: impossible" << std::endl;
+            else
+	            std::cout << "int: " << this->_i << std::endl;
+            if (((this->_d > FLOAT_MAX) || (this->_d < FLOAT_MIN)) && ((this->_str != "inf") && (this->_str != "-inf") && (this->_str != "+inf")))
+                std::cout << "float: impossible" << std::endl;
+            else
+	            std::cout << std::fixed << "float: " << this->_f << "f" << std::endl;
+	        std::cout << std::fixed << "double: " << this->_d << std::endl;
             return;
         }
         default:
