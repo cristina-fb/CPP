@@ -6,26 +6,23 @@
 /*   By: crisfern <crisfern@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/27 15:15:52 by crisfern          #+#    #+#             */
-/*   Updated: 2022/12/27 16:47:58 by crisfern         ###   ########.fr       */
+/*   Updated: 2023/01/11 19:50:55 by crisfern         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef EASYFIND_HPP
 # define EASYFIND_HPP
+# include <exception>
 # include <algorithm>
 # include <list>
 
 template<typename T>
-T easyfind(std::list<T> lst , int n)
+void easyfind(std::list<T> lst, int n)
 {
-	try
+	if (std::find(lst.begin(), lst.end(), n) == lst.end())
 	{
-		return *(std::find(lst.begin(), lst.end(), n));
+		throw("Element wasn't found!! :(");
 	}
-	catch(std::exception & e)
-	{
-		std::cout << e.what() << std::endl;
-	}
-	return 0;
+	std::cout << "Element was found!! :)" << std::endl;
 }
 #endif

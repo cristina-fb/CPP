@@ -6,7 +6,7 @@
 /*   By: crisfern <crisfern@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/27 15:15:49 by crisfern          #+#    #+#             */
-/*   Updated: 2022/12/27 16:48:24 by crisfern         ###   ########.fr       */
+/*   Updated: 2023/01/11 19:51:06 by crisfern         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,21 @@ int main( void )
 	lst.push_back(4);
 	lst.push_back(5);
 	lst.push_back(6);
-	int a = easyfind(lst, 55);
-	std::cout << a << std::endl;
+	try
+	{
+		easyfind(lst, 55);
+	}
+	catch(char const * str)
+	{
+		std::cout << str << std::endl;
+	}
+	try
+	{
+		easyfind(lst, 6);
+	}
+	catch(char const * str)
+	{
+		std::cout << str << std::endl;
+	}
 	return 0;
 }
