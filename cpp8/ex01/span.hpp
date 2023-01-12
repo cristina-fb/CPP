@@ -6,13 +6,16 @@
 /*   By: crisfern <crisfern@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/27 16:57:37 by crisfern          #+#    #+#             */
-/*   Updated: 2022/12/27 17:11:34 by crisfern         ###   ########.fr       */
+/*   Updated: 2023/01/12 16:21:06 by crisfern         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef SPAN_CLASS_HPP
 # define SPAN_CLASS_HPP
 # include <iostream>
+# include <list>
+# include <exception>
+# include <algorithm>
 class span
 {
 	public:
@@ -25,9 +28,11 @@ class span
 		void addNumber( int number );
 		int shortestSpan( void ) const;
 		int longestSpan( void ) const;
+		std::list<int> getTab( void ) const;
 		unsigned int getN( void ) const;
 
 	private:
-		unsigned int _N;
+		std::list<int> _tab;
+		unsigned int _n;
 };
 #endif
