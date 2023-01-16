@@ -6,7 +6,7 @@
 /*   By: crisfern <crisfern@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/27 16:57:37 by crisfern          #+#    #+#             */
-/*   Updated: 2023/01/12 16:21:06 by crisfern         ###   ########.fr       */
+/*   Updated: 2023/01/16 17:39:38 by crisfern         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 # include <list>
 # include <exception>
 # include <algorithm>
+# include <numeric>
 class span
 {
 	public:

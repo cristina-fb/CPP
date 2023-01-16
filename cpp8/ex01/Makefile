@@ -6,14 +6,14 @@
 #    By: crisfern <crisfern@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/09 16:33:18 by crisfern          #+#    #+#              #
-#    Updated: 2023/01/12 12:34:44 by crisfern         ###   ########.fr        #
+#    Updated: 2023/01/16 17:37:54 by crisfern         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 CXX = clang++
 CXXFLAGS = -Wall -Werror -Wextra -std=c++98 -pedantic
 NAME = span
-SRC = main.cpp #span.cpp
+SRC = main.cpp span.cpp
 OBJ = $(SRC:.cpp=.o)
 
 all : $(NAME)

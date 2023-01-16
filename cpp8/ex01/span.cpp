@@ -6,7 +6,7 @@
 /*   By: crisfern <crisfern@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/27 16:57:47 by crisfern          #+#    #+#             */
-/*   Updated: 2023/01/12 17:42:12 by crisfern         ###   ########.fr       */
+/*   Updated: 2023/01/16 18:36:00 by crisfern         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@ span & span::operator=( span & asg )
 		this->_n = asg.getN();
 		this->_tab = asg.getTab();
 	}
+	return *this;
 }
 
 void span::addNumber( int number )
@@ -45,14 +46,19 @@ void span::addNumber( int number )
 	else
 	{
 		this->_tab.push_back(number);
+		this->_n++;
 	}
 }
 
 int span::shortestSpan( void ) const
 {
+	std::list<int> aux;
 	if (this->_tab.size() < 2)
 		throw("Can't calculate span! :(");
-	return();
+	aux = this->_tab;
+	aux.sort();
+	std::adjacent_difference(aux.begin(), aux.end(), aux.begin());
+	return(*(std::min_element(++(aux.begin()), aux.end())));
 }
 
 int span::longestSpan( void ) const
