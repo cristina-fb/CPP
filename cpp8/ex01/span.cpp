@@ -6,7 +6,7 @@
 /*   By: crisfern <crisfern@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/27 16:57:47 by crisfern          #+#    #+#             */
-/*   Updated: 2023/01/16 18:36:00 by crisfern         ###   ########.fr       */
+/*   Updated: 2023/01/19 15:38:49 by crisfern         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,14 +40,28 @@ span & span::operator=( span & asg )
 void span::addNumber( int number )
 {
 	if (this->_tab.size() >= this->_n)
-	{
-		throw("List is aready full! :(");
-	}
+		throw("List is already full! :(");
 	else
-	{
 		this->_tab.push_back(number);
-		this->_n++;
+}
+
+void span::addNumber( std::list<int>::iterator begin, std::list<int>::iterator end )
+{
+	std::list<int>::iterator aux = this->_tab.end();
+	int size_span = this->_tab.size();
+	int size_it = std::distance(begin, end);
+	if ((size_it + size_span) <= this->_n)
+	{
+		this->_tab.insert(this->_tab.end(), begin, end);
+		return;
 	}
+	else if (size_span < this->_n)
+	{
+		int a = -(size_it - (this->_n - size_span));
+		std::advance(end, a);
+		this->_tab.insert(this->_tab.end(), begin, end);
+	}
+	throw("List is already full! :(");
 }
 
 int span::shortestSpan( void ) const

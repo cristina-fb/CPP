@@ -6,7 +6,7 @@
 /*   By: crisfern <crisfern@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/27 16:57:37 by crisfern          #+#    #+#             */
-/*   Updated: 2023/01/16 17:39:38 by crisfern         ###   ########.fr       */
+/*   Updated: 2023/01/18 18:52:13 by crisfern         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 # include <exception>
 # include <algorithm>
 # include <numeric>
+# include <iterator>
 class span
 {
 	public:
@@ -27,6 +28,7 @@ class span
 
 		span & operator=( span & asg );
 		void addNumber( int number );
+		void addNumber( std::list<int>::iterator begin, std::list<int>::iterator end );
 		int shortestSpan( void ) const;
 		int longestSpan( void ) const;
 		std::list<int> getTab( void ) const;
