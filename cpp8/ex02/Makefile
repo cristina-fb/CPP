@@ -6,14 +6,14 @@
 #    By: crisfern <crisfern@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/09 16:33:18 by crisfern          #+#    #+#              #
-#    Updated: 2022/12/27 17:21:01 by crisfern         ###   ########.fr        #
+#    Updated: 2023/01/13 14:35:44 by crisfern         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 CXX = clang++
 CXXFLAGS = -Wall -Werror -Wextra -std=c++98 -pedantic
 NAME = mutantstack
-SRC = main.cpp mutantstack.cpp
+SRC = main.cpp
 OBJ = $(SRC:.cpp=.o)
 
 all : $(NAME)
