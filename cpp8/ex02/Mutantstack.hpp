@@ -6,7 +6,7 @@
 /*   By: crisfern <crisfern@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/27 17:21:15 by crisfern          #+#    #+#             */
-/*   Updated: 2023/01/20 15:45:02 by crisfern         ###   ########.fr       */
+/*   Updated: 2023/01/24 12:33:36 by crisfern         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,13 +26,13 @@ class MutantStack: public std::stack<T>
 		{
 			if (this != &asg)
 			{
+				this->c.clear();
+				this->c = asg.c;
 			}
 			return *this; 
 		}
 		
-		iterator begin() { return  }
-		iterator rbegin() { return  }
-		iterator end() { return  }
-		iterator rend() { return  }
+		iterator begin( void ) { return this->c.begin(); }
+		iterator end( void ) { return this->c.end(); }
 };
 #endif
