@@ -1,30 +1,19 @@
 #include "BitcoinExchange.hpp"
 
-static void init(BitcoinExchange *btc)
+BitcoinExchange::BitcoinExchange( void ): fnData(""), fnInput("")
 {
-    btc->strdate = "";
-    btc->year = -1;
-    btc->month = -1;
-    btc->day = -1;
-    btc->value = -1;
-    btc->validDate = false;
 }
 
-BitcoinExchange::BitcoinExchange( void )
+BitcoinExchange::BitcoinExchange( std::string data, std::string input ): fnData(data), fnInput(input)
 {
-    init(this);
-}
+    std::ifstream dataStream;
 
-BitcoinExchange::BitcoinExchange( std::string str )
-{
-    std::cout << str << std::endl;
-    
-    // this->strdate = ;
-    // this->value = ;
-    // this->year = ;
-    // this->month = ;
-    // this->day = ;
-    // this->validDate = ;
+    dataStream.open(this->fnData);
+    for(std::string line; std::getline(dataStream, line);)
+    {
+        //add line to table
+    }
+    dataStream.close();
 }
 
 BitcoinExchange::BitcoinExchange( BitcoinExchange & cpy )
@@ -40,12 +29,14 @@ BitcoinExchange & BitcoinExchange::operator=( BitcoinExchange & asg )
 {
     if( this != &asg)
     {
-        this->strdate = asg.strdate;
-        this->year = asg.year;
-        this->month = asg.month;
-        this->day = asg.day;
-        this->value = asg.value;
-        this->validDate = asg.validDate;
+        this->fnData = asg.fnData;
+        this->fnInput = asg.fnInput;
+        //copy of tables
     }
     return *this;
+}
+
+void BitcoinExchange::printResult( void )
+{
+
 }

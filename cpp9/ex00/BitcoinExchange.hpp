@@ -1,22 +1,24 @@
 #ifndef BITCOINEXCHANGE_HPP
 # define BITCOINEXCHANGE_HPP
 # include <iostream>
+# include <fstream>
+# include <string>
+# include <map>
 
 class BitcoinExchange
 {
     public:
         BitcoinExchange( void );
-        BitcoinExchange( std::string str );
+        BitcoinExchange( std::string data, std::string input );
         BitcoinExchange( BitcoinExchange & cpy );
         ~BitcoinExchange( void );
         
         BitcoinExchange & operator=( BitcoinExchange & rhs );
+        void printResult( void );
 
-        std::string strdate;
-        int year;
-        int month;
-        int day;
-        float value;
-        bool validDate;
+        std::string fnData;
+        std::string fnInput;
+        std::map<std::string, double> tData;
+        std::map<std::string, double> tInput;
 };
 #endif
