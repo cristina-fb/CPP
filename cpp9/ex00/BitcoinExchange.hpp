@@ -14,7 +14,6 @@ class BitcoinExchange
         ~BitcoinExchange( void );
         
         BitcoinExchange & operator=( BitcoinExchange & rhs );
-        void printResult( void );
 
         std::string fnData;
         std::string fnInput;

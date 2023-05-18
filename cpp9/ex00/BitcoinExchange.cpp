@@ -11,6 +11,8 @@ BitcoinExchange::BitcoinExchange( std::string data, std::string input ): fnData(
     dataStream.open(this->fnData);
     for(std::string line; std::getline(dataStream, line);)
     {
+        int n = line.find(',');
+        std::cout << line.substr(0, n)<< "||" << line.substr(n+1) << std::endl;
         //add line to table
     }
     dataStream.close();
@@ -34,9 +36,4 @@ BitcoinExchange & BitcoinExchange::operator=( BitcoinExchange & asg )
         //copy of tables
     }
     return *this;
-}
-
-void BitcoinExchange::printResult( void )
-{
-
 }
