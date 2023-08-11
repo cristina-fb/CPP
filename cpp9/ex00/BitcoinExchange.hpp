@@ -4,21 +4,18 @@
 # include <fstream>
 # include <string>
 # include <map>
+# include "Date.hpp"
 
 class BitcoinExchange
 {
     public:
         BitcoinExchange( void );
-        BitcoinExchange( std::string data, char delimiter, int input );
         BitcoinExchange( BitcoinExchange & cpy );
         ~BitcoinExchange( void );
         
         BitcoinExchange & operator=( BitcoinExchange & rhs );
-        bool isValidDate( std::string date );
+        double searchDate( Date date );
 
-        std::string fnData;
-        char delimiter;
-        int input;
-        std::multimap<std::string, double> Data;
+        std::map<Date*, double> data;
 };
 #endif
