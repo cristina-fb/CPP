@@ -13,22 +13,21 @@ static bool isStringDigit(std::string str, int n)
 Date::Date( void ): year(0), month(0), day(0), isValid(0)
 {}
 
-Date::Date( std::string str ): year(0), month(0), day(0), isValid(0) //mes, dia año 0
+Date::Date( std::string str ): year(0), month(0), day(0), isValid(0)
 {
     int pos;
-
     pos = str.find('-'); 
     this->year = std::atoi(str.c_str());
-    if ((pos < 0) || (pos > 4) || (!isStringDigit(str, pos)))
+    if ((pos < 0) || (!isStringDigit(str, pos)))
         return ;
     str = str.substr(pos + 1);
     pos = str.find('-');
     this->month = std::atoi(str.c_str());
-    if ((pos < 0) || (pos > 2) || (!isStringDigit(str, pos)) || (month > 12))
+    if ((pos < 0) || (!isStringDigit(str, pos)) || (month > 12) || (month < 1))
         return ;
     str = str.substr(pos + 1);
     this->day = std::atoi(str.c_str());
-    if ((str.length() < 0) || (str.length() > 2) || (!isStringDigit(str, str.length())) || (day > 31)
+    if ((str.length() < 0) || (!isStringDigit(str, str.length())) || (day > 31) || (day < 1)
         || ((month == 4) && (day > 30)) || ((month == 6) && (day > 30))
         || ((month == 9) && (day > 30)) || ((month == 11) && (day > 30))
         || ((year % 4 == 0) && (month == 2) && (day > 29)) || ((year % 4 != 0) && (month == 2) && (day > 28)))
@@ -46,7 +45,7 @@ Date::~Date( void )
 
 bool Date::dateBefore( Date date )
 {
-    if ((this->year == date.year) && (this->year == date.year) && (this->year == date.year))
+    if ((this->year == date.year) && (this->month == date.month) && (this->day == date.day))
         return false;
     if (this->year < date.year)
         return false;

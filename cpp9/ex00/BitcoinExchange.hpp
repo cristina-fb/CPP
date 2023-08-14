@@ -5,6 +5,9 @@
 # include <string>
 # include <map>
 # include "Date.hpp"
+# define E1 "Error: bad input"
+# define E2 "Error: not a positive number"
+# define E3 "Error: too large a number"
 
 class BitcoinExchange
 {
@@ -14,7 +17,8 @@ class BitcoinExchange
         ~BitcoinExchange( void );
         
         BitcoinExchange & operator=( BitcoinExchange & rhs );
-        double searchDate( Date date );
+        double searchDateValue( Date date );
+        void printInputResult( std::string filename );
 
         std::map<Date*, double> data;
 };
