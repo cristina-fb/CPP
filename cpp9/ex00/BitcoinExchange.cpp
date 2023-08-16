@@ -46,14 +46,26 @@ BitcoinExchange::BitcoinExchange( void )
     double n;
 
     dataStream.open("data.csv");
+    if (!dataStream)
+    {
+        std::cout << "Error: could not open file." << std::endl;
+        std::exit(0);
+    }
     for(std::string line; std::getline(dataStream, line);)
     {
         pos = line.find(',');
+        if (pos == -1)
+            continue ;
         dstr = spaceTrim(line.substr(0, pos));
         Date * date = new Date(dstr);
         if (date->isValid)
         {
             str = spaceTrim(line.substr(pos+1));
+            if (str.empty() || isSpacesString(str) || !isStringDigitFloat(str, str.length()))
+            {
+                delete date;
+                continue;
+            }
             n = std::atof(str.c_str());
             this->data.insert(std::pair<Date *, double>(date, n));
         }
@@ -113,6 +125,8 @@ void BitcoinExchange::printInputResult( std::string filename )
     double n;
 
     dataStream.open(filename);
+    if (!dataStream)
+        std::cout << "Error: could not open file." << std::endl;
     for(std::string line; std::getline(dataStream, line);)
     {
         if (line.empty() || isSpacesString(line))
