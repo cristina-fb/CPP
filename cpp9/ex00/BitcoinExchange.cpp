@@ -1,6 +1,27 @@
 #include "BitcoinExchange.hpp"
 
-static bool isStringDigitFloat(std::string str, int n)
+static std::string spaceTrim( std::string str )
+{
+    std::string::size_type init = str.find_first_not_of(" \f\n\r\t\v");
+    if (init != std::string::npos)
+        str = str.substr(init);
+    std::string::size_type end = str.find_last_not_of(" \f\n\r\t\v");
+    if (end != std::string::npos)
+        str = str.substr(0, end + 1);
+    return str;
+}
+
+static bool isSpacesString( std::string str )
+{
+    for (unsigned long i = 0; i < str.length(); i++)
+    {
+        if ((str[i] != ' ') && (str[i] != '\f') && (str[i] != '\n') && (str[i] != '\r') && (str[i] != '\t') && (str[i] != '\v'))
+            return false;
+    }
+    return true;
+}
+
+static bool isStringDigitFloat( std::string str, int n )
 {
     int pointFlag = 0;
 
@@ -28,13 +49,11 @@ BitcoinExchange::BitcoinExchange( void )
     for(std::string line; std::getline(dataStream, line);)
     {
         pos = line.find(',');
-        dstr = line.substr(0, pos);
-        dstr = line.substr(dstr.find_first_not_of(" \f\n\r\t\v"), dstr.find_last_not_of(" \f\n\r\t\v") + 1);
+        dstr = spaceTrim(line.substr(0, pos));
         Date * date = new Date(dstr);
         if (date->isValid)
         {
-            str = line.substr(pos+1);
-            str = str.substr(str.find_first_not_of(" \f\n\r\t\v"), str.find_last_not_of(" \f\n\r\t\v") + 1);
+            str = spaceTrim(line.substr(pos+1));
             n = std::atof(str.c_str());
             this->data.insert(std::pair<Date *, double>(date, n));
         }
@@ -59,9 +78,11 @@ BitcoinExchange & BitcoinExchange::operator=( BitcoinExchange & asg )
 {
     if(this != &asg)
     {
-        //borrar elementos
+        for (std::map<Date *, double>::iterator it = this->data.begin(); it != this->data.end(); ++it)
+            delete it->first;
         this->data.clear();
-        this->data.insert(asg.data.begin(), asg.data.end()); //Está bien copiado asi??
+        for (std::map<Date *, double>::iterator it = asg.data.begin(); it != asg.data.end(); ++it)
+            this->data.insert(std::pair<Date *, double>(new Date(*it->first), it->second));
     }
     return *this;
 }
@@ -87,30 +108,37 @@ void BitcoinExchange::printInputResult( std::string filename )
     std::ifstream dataStream;
     std::string str;
     std::string dstr;
+    int first = 0;
     int pos;
     double n;
 
     dataStream.open(filename);
     for(std::string line; std::getline(dataStream, line);)
     {
+        if (line.empty() || isSpacesString(line))
+            continue ;
         pos = line.find('|');
-        dstr = line.substr(0, pos);
-        dstr = dstr.substr(dstr.find_first_not_of(" \f\n\r\t\v"), dstr.find_last_not_of(" \f\n\r\t\v") + 1);
-        Date fdate(dstr);
-        if (fdate.isValid)
-        {
-            str = line.substr(pos+1);
-            str = str.substr(str.find_first_not_of(" \f\n\r\t\v"), str.find_last_not_of(" \f\n\r\t\v") + 1);
-            n = std::atof(str.c_str());
-            if (!isStringDigitFloat(str.c_str(), str.length()) || (n < 0))
-                std::cout << E2 << std::endl;
-            else if (n > 1000)
-                std::cout << E3 << std::endl;
-            else
-                std::cout << dstr << " => " << n << " = " << n * this->searchDateValue(fdate) << std::endl;
-        }
+        if (pos == -1)
+            std::cout << E1 << " => " << line << std::endl;
         else
-            std::cout << E1 << " => " << dstr << std::endl;
+        {
+            dstr = spaceTrim(line.substr(0, pos));
+            Date fdate(dstr);
+            if (fdate.isValid)
+            {
+                str = spaceTrim(line.substr(pos+1));
+                n = std::atof(str.c_str());
+                if (!isStringDigitFloat(str.c_str(), str.length()) || (n < 0) || str.empty())
+                    std::cout << E2 << std::endl;
+                else if (n > 1000)
+                    std::cout << E3 << std::endl;
+                else
+                    std::cout << dstr << " => " << n << " = " << n * this->searchDateValue(fdate) << std::endl;
+            }
+            else if (first)
+                std::cout << E1 << " => " << dstr << std::endl;
+        }
+        first++;
     }
     dataStream.close();
 
