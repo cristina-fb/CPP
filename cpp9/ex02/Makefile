@@ -6,7 +6,7 @@
 #    By: crisfern <crisfern@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/09 16:33:18 by crisfern          #+#    #+#              #
-#    Updated: 2023/05/10 16:47:44 by crisfern         ###   ########.fr        #
+#    Updated: 2023/08/17 12:50:08 by crisfern         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,7 @@ CXX = clang++
 CXXFLAGS = -Wall -Werror -Wextra -std=c++98 -pedantic
 NAME = PmergeMe
 HEADER = PmergeMe.hpp
-SRC = main.cpp PmergeMe.cpp
+SRC = main.cpp #PmergeMe.cpp
 OBJ = $(SRC:.cpp=.o)
 
 all : $(NAME)
