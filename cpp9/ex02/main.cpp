@@ -17,6 +17,6 @@ int main(int argc, char **argv)
         return (0);
     
     lst = a.mergeInsertionSort(a.lst);
-    printList(lst);
+    //printList(lst);
     return (0);
 }
