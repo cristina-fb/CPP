@@ -8,6 +8,28 @@ bool isDigitString( std::string str )
     return true;
 }
 
+std::list<int> jacobsthal(int max)
+{
+    std::list<int> lst;
+    int n = 0, value = 0;
+
+    while (1)
+    {
+        value *= 2;
+        if (n % 2)
+            value--;
+        else
+            value++;
+        if (value >= max)
+            break ;
+        if (value > 1)
+            lst.push_back(value);
+        n++;
+    }
+    lst.push_back(max);
+    return (lst);
+}
+
 int binarySearch( std::list<int> lst, int value )
 {
     int min = 0, max = lst.size() - 1, avg;
@@ -23,16 +45,6 @@ int binarySearch( std::list<int> lst, int value )
     }
     //std::cout << "      Res: " << min << std::endl;
     return (min);
-}
-
-std::list<std::pair<int, int> >::iterator find_pair(std::list<std::pair<int, int> > lst, int value)
-{
-    std::list<std::pair<int, int> >::iterator it = lst.begin();
-
-    for (it = lst.begin(); it != lst.end(); it++)
-        if (it->first == value)
-            break ;
-    return it;
 }
 
 PmergeMe::PmergeMe( void )
@@ -85,75 +97,61 @@ PmergeMe & PmergeMe::operator=( PmergeMe & asg )
 std::list<int> PmergeMe::mergeInsertionSort( std::list<int> init )
 {
     // Create main and pend lists sorted by pairs
-    std::list<std::pair<int, int> >::iterator itm;
-    std::list<std::pair<int,int> > main;
-    std::list<int> ret, arg;
-    int aux;
+    std::list<int> main, pend, ret, order;
+    std::list<int>::iterator itm, id1, id2, id3;
 
     for (std::list<int>::iterator it = init.begin(); it != init.end(); it++)
     {
-        if (std::next(it, 1) == init.end())
+        if (++it == init.end())
         {
-            main.push_back(std::make_pair(-1,*it));
+            pend.push_back(*(--it));
         }
-        else if (*it < *(std::next(it, 1)))
+        else if (*(--it) < *(++it))
         {
-            aux = *it;
-            it++;
-            main.push_back(std::make_pair(*it, aux));
+            pend.push_back(*(--it));
+            main.push_back(*(++it));
         }
         else
         {
-            aux = *it;
-            it++;
-            main.push_back(std::make_pair(aux, *it));
+            main.push_back(*(--it));
+            pend.push_back(*(++it));
         }
     }
-    std::cout << "---------- ITERACION ------------" << std::endl;
-    for (std::list<std::pair<int, int> >::iterator it = main.begin(); it != main.end(); it++)
-        std::cout << it->first << " ";
-    std::cout << std::endl;
-    for (std::list<std::pair<int, int> >::iterator it = main.begin(); it != main.end(); it++)
-        std::cout << it->second << " ";
-    std::cout << std::endl;
-    if ((main.size() > 2 ) || ((main.size() == 2) && (std::next(main.end(), -1)->first != -1)))
+    if (main.size() > 1)
     {
-        for (std::list<std::pair<int, int> >::iterator it = main.begin(); it != main.end(); it++)
-            if (it->first != -1)
-                arg.push_back(it->first);
-        ret = this->mergeInsertionSort(arg);
+        ret = this->mergeInsertionSort(main);
         //sort pend values
         itm = main.begin();
         for (std::list<int>::iterator it = ret.begin(); it != ret.end(); it++)
         {
-            if (*it != itm->first)
+            if (*it != *itm)
             {
-                iter_swap(itm, find_pair(main, *it)); //Esta función es una mierda
+                id1 = pend.begin();
+                id2 = pend.begin();
+                id3 = std::find(main.begin(), main.end(), *it);
+                std::advance(id1, std::distance(main.begin(), itm));
+                std::advance(id2, std::distance(main.begin(), id3));
+                std::iter_swap(id1, id2);
+                std::iter_swap(itm, id3);
             }
             itm++;
         }
     }
     else
-        ret.push_back(main.begin()->first);
-    std::cout << std::endl;
-    for (std::list<std::pair<int, int> >::iterator it = main.begin(); it != main.end(); it++)
-        std::cout << it->first << " ";
-    std::cout << std::endl;
-    for (std::list<std::pair<int, int> >::iterator it = main.begin(); it != main.end(); it++)
-        std::cout << it->second << " ";
-    std::cout << std::endl;
-
-    // calc jacobsthal order
-    ret.push_front(main.begin()->second);
-    main.erase(main.begin());
-    for (std::list<std::pair<int, int> >::iterator it = main.begin(); it != main.end(); it++)
+        ret = main;
+    // TODO calc jacobsthal order
+    // insert first pend element
+    ret.push_front(*pend.begin());
+    pend.erase(pend.begin());
+    order = jacobsthal(pend.size());
+    for (std::list<int>::iterator it = pend.begin(); it != pend.end(); it++)
     {
-        int index = binarySearch(ret, it->second);
-        ret.insert(std::next(ret.begin(), index), it->second);
+        int index = binarySearch(ret, *it);
+        ret.insert(std::next(ret.begin(), index), *it);
     }
-    std::cout << "RET" << std::endl;
-    for (std::list<int>::iterator it = ret.begin(); it != ret.end(); it++)
-        std::cout << *it << " ";
-    std::cout << std::endl;
+    std::cout << "----------------------------------" << std::endl;
+    for (std::list<int>::iterator it = order.begin(); it != order.end(); it++)
+        std::cout << *it << std::endl;
+
     return (ret);
 }

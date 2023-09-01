@@ -1,6 +1,7 @@
 #ifndef PMERGEME_CLASS_HPP
 # define PMERGEME_CLASS_HPP
 # include <iostream>
+# include <algorithm>
 # include <list>
 
 class PmergeMe
