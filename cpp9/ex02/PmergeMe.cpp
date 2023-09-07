@@ -11,7 +11,7 @@ bool isDigitString( std::string str )
 std::list<int> jacobsthal(int max)
 {
     std::list<int> lst;
-    int n = 0, value = 0, i = 0;
+    int n = 0, value = 0, last = 1;
 
     while (1)
     {
@@ -26,16 +26,12 @@ std::list<int> jacobsthal(int max)
             value = max;
         if (value > 1)
         {
-            if (!lst.empty())
-                i = *lst.begin();
-            else
-                i = 1;
-            lst.push_back(value);
-            for (int loop = value - 1; loop > i; loop--)
+            for (int loop = value; loop > last; loop--)
                 lst.push_back(loop);
             if (value >= max)
                 break;
         }
+        last = value;
         n++;
     }
     return (lst);
@@ -43,18 +39,19 @@ std::list<int> jacobsthal(int max)
 
 int binarySearch( std::list<int> lst, int value )
 {
-    int min = 0, max = lst.size() - 1, avg;
+    int min = 0, max = lst.size(), avg;
+    std::list<int>::iterator it;
 
     while (min != max)
     {
         avg = (min + max) / 2;
-        //std::cout << "      avg: " << avg << " min: " << min << " max: " << max << std::endl;
-        if (*std::next(lst.begin(), avg) > value)
+        it = lst.begin();
+        std::advance(it, avg);
+        if (*it > value)
             max = avg;
         else
             min = avg + 1;
     }
-    //std::cout << "      Res: " << min << std::endl;
     return (min);
 }
 
@@ -109,7 +106,7 @@ std::list<int> PmergeMe::mergeInsertionSort( std::list<int> init )
 {
     // Create main and pend lists sorted by pairs
     std::list<int> main, pend, ret, order;
-    std::list<int>::iterator itm, itp, id1, id2, id3;
+    std::list<int>::iterator itm, itp, itr, id1, id2, id3;
 
     for (std::list<int>::iterator it = init.begin(); it != init.end(); it++)
     {
@@ -155,20 +152,37 @@ std::list<int> PmergeMe::mergeInsertionSort( std::list<int> init )
     order = jacobsthal(pend.size());
     std::cout << "----------------------------------" << std::endl;
     std::cout << "SIZE: " << pend.size() << std::endl;
-    for (std::list<int>::iterator it = pend.begin(); it != pend.end(); it++)
-        std::cout << *it << " ";
-    std::cout << std::endl;
+    std::cout << "ORDER: ";
     for (std::list<int>::iterator it = order.begin(); it != order.end(); it++)
         std::cout << *it << " ";
     std::cout << std::endl;
+    for (std::list<int>::iterator it = ret.begin(); it != ret.end(); it++)
+        std::cout << *it << " ";
+    std::cout << std::endl;
+    for (std::list<int>::iterator it = pend.begin(); it != pend.end(); it++)
+        std::cout << *it << " ";
+    std::cout << std::endl << std::endl;
     ret.push_front(*pend.begin());
-    pend.erase(pend.begin());
+    for (std::list<int>::iterator it = ret.begin(); it != ret.end(); it++)
+        std::cout << *it << " ";
+    std::cout << std::endl;
+    for (std::list<int>::iterator it = pend.begin(); it != pend.end(); it++)
+        std::cout << *it << " ";
+    std::cout << std::endl << std::endl;
     for (std::list<int>::iterator it = order.begin(); it != order.end(); it++)
     {
         itp = pend.begin();
+        itr = ret.begin();
         std::advance(itp, (*it) - 1);
         int index = binarySearch(ret, *itp);
-        ret.insert(std::next(ret.begin(), index), *itp); //arreglar
+        std::advance(itr, index);
+        ret.insert(itr, *itp);
+        // for (std::list<int>::iterator itt = ret.begin(); itt != ret.end(); itt++)
+        //     std::cout << *itt << " ";
+        // std::cout << std::endl;
+        // for (std::list<int>::iterator itt = pend.begin(); itt != pend.end(); itt++)
+        //     std::cout << *itt << " ";
+        // std::cout << std::endl << std::endl;
     }
     for (std::list<int>::iterator it = ret.begin(); it != ret.end(); it++)
         std::cout << *it << " ";
