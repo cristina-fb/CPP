@@ -3,6 +3,7 @@
 # include <iostream>
 # include <algorithm>
 # include <list>
+# include <vector>
 
 class PmergeMe
 {
@@ -13,8 +14,10 @@ class PmergeMe
         ~PmergeMe( void );
 
         PmergeMe & operator=( PmergeMe & asg );
-        std::list<int> mergeInsertionSort( std::list<int> init );
+        std::list<int> sort_lst( std::list<int> init );
+        std::vector<int> sort_vct( std::vector<int> init );
 
         std::list<int> lst;
+        std::vector<int> vct;
 };
 #endif
