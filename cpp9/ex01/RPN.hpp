@@ -1,9 +1,7 @@
 #ifndef RPN_CLASS_H
 # define RPN_CLASS_H
 # include <iostream>
-# include <cctype>
 # include <stack>
-# include <sstream>
 # include <string>
 #endif
 
@@ -18,6 +16,7 @@ class RPN
         RPN & operator=( RPN & asg );
 
         std::string getStr( void ) const;
+        std::stack<long int> getStack( void ) const;
         int getRes( void ) const;
 
         void add( void );
@@ -27,5 +26,5 @@ class RPN
 
     private:
         std::string _str;
-        std::stack<int> _s;
+        std::stack<long int> _s;
 };
