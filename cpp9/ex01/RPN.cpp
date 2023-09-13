@@ -17,6 +17,8 @@ RPN::RPN( std::string str ): _str(str)
             if (++n >= 10)
                 throw("Error");
             this->_s.push(std::atol(&_str[i]));
+            if (this->_s.top() > 2147483647)
+                throw("Error");
             while (isdigit(_str[i]))
                 i++;
             continue ;
