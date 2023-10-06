@@ -2,38 +2,41 @@
 #include <iostream>
 #include <ctime>
 
-void printList( std::list<int> lst )
-{
-    for (std::list<int>::iterator it = lst.begin(); it != lst.end(); it++)
-        std::cout << *it << " ";
-    std::cout << std::endl;
-}
-
-void printVector( std::vector<int> vct )
-{
-    for (std::vector<int>::iterator it = vct.begin(); it != vct.end(); it++)
-        std::cout << *it << " ";
-    std::cout << std::endl;
-}
-
 int main(int argc, char **argv)
 {
     std::list<int>  lst;
     std::vector<int>  vct;
     std::clock_t init_lst, init_vct, end_lst, end_vct;
-    PmergeMe        a(argv, argc);
 
     if (argc < 2)
         return (0);
-    init_lst = std::clock();
-    lst = a.sort_lst(a.lst);
-    end_lst = std::clock();
-    init_vct = std::clock();
-    vct = a.sort_vct(a.vct);
-    end_vct = std::clock();
-    printList(lst);
-    std::cout << "Time elapsed lst: " << end_lst - init_lst << std::endl;
-    printVector(vct);
-    std::cout << "Time elapsed vct: " << end_vct - init_vct << std::endl;
+    try
+    {
+        init_lst = std::clock();
+        PmergeMe    a(argv, argc, 0);
+        end_lst = std::clock();
+
+        init_vct = std::clock();
+        PmergeMe    b(argv, argc, 1);
+        end_vct = std::clock();
+
+        // PRINT VALUES
+        std::cout << "Before        : ";
+        for (int i = 1; i < argc; i++)
+            if (*argv[i])
+                std::cout << argv[i] << " ";
+        std::cout << std::endl;
+
+        std::cout << "After   (list): ";
+        a.printList();
+        std::cout << "After (vector): ";
+        b.printVector();
+        std::cout << "Time to process a range of " << argc - 1 << " elements with std::list : " << end_lst - init_lst  << " ms" << std::endl;
+        std::cout << "Time to process a range of " << argc - 1 << " elements with std::vector : " << end_vct - init_vct << " ms" << std::endl;
+    }
+    catch(char const * exc)
+    {
+        std::cerr << exc << '\n';
+    }
     return (0);
 }

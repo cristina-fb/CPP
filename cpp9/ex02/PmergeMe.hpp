@@ -9,15 +9,21 @@ class PmergeMe
 {
     public:
         PmergeMe( void );
-        PmergeMe( char **argv, int argc );
+        PmergeMe( char **argv, int argc, int opt );
         PmergeMe( PmergeMe & cpy );
         ~PmergeMe( void );
 
         PmergeMe & operator=( PmergeMe & asg );
+        std::list<int> get_lst() const;
+        std::vector<int> get_vct() const;
+
         std::list<int> sort_lst( std::list<int> init );
         std::vector<int> sort_vct( std::vector<int> init );
-
-        std::list<int> lst;
-        std::vector<int> vct;
+        void printList( void );
+        void printVector( void );
+    
+    private:
+        std::list<int> _lst;
+        std::vector<int> _vct;
 };
 #endif
