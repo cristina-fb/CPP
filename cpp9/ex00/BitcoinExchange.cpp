@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   BitcoinExchange.cpp                                :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: crisfern <crisfern@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/10/06 15:05:47 by crisfern          #+#    #+#             */
+/*   Updated: 2023/10/06 15:05:48 by crisfern         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "BitcoinExchange.hpp"
 
 static std::string spaceTrim( std::string str )
@@ -47,19 +59,17 @@ BitcoinExchange::BitcoinExchange( void )
 
     dataStream.open("data.csv");
     if (!dataStream)
-    {
-        std::cout << "Error: could not open file." << std::endl;
-        std::exit(0);
-    }
+        throw("Error: could not open file.");
     for(std::string line; std::getline(dataStream, line);)
     {
+        //linea vacia o con espacios?
         pos = line.find(',');
         if (pos == -1)
             continue ;
         dstr = spaceTrim(line.substr(0, pos));
-        Date * date = new Date(dstr);
-        if (date->isValid)
+        try
         {
+            Date * date = new Date(dstr); //dstr vacia?
             str = spaceTrim(line.substr(pos+1));
             if (str.empty() || isSpacesString(str) || !isStringDigitFloat(str, str.length()))
             {
@@ -69,8 +79,10 @@ BitcoinExchange::BitcoinExchange( void )
             n = std::atof(str.c_str());
             this->data.insert(std::pair<Date *, double>(date, n));
         }
-        else
-            delete date;
+        catch(const std::exception& e)
+        {
+            std::cerr << e.what() << '\n';
+        }
     }
     dataStream.close();
 }
@@ -155,5 +167,4 @@ void BitcoinExchange::printInputResult( std::string filename )
         first++;
     }
     dataStream.close();
-
 }
