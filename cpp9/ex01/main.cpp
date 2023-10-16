@@ -6,7 +6,7 @@
 /*   By: crisfern <crisfern@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/06 15:06:18 by crisfern          #+#    #+#             */
-/*   Updated: 2023/10/06 15:06:19 by crisfern         ###   ########.fr       */
+/*   Updated: 2023/10/16 11:10:16 by crisfern         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,5 +28,6 @@ int main(int argc, char **argv)
     {
         std::cout << exc << std::endl;
     }
+    argc++;
     return (0);
 }

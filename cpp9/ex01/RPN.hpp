@@ -6,7 +6,7 @@
 /*   By: crisfern <crisfern@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/06 15:06:29 by crisfern          #+#    #+#             */
-/*   Updated: 2023/10/06 15:06:30 by crisfern         ###   ########.fr       */
+/*   Updated: 2023/10/16 11:02:54 by crisfern         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,17 +15,17 @@
 # include <iostream>
 # include <stack>
 # include <string>
+# include <limits>
 #endif
 
 class RPN
 {
     public:
-        RPN( void );
-        RPN( std::string str );
-        RPN( RPN & cpy );
+        RPN( std::string const &str );
+        RPN( RPN const &cpy );
         ~RPN( void );
 
-        RPN & operator=( RPN & asg );
+        RPN & operator=( RPN const &asg );
 
         std::string getStr( void ) const;
         std::stack<long int> getStack( void ) const;
@@ -37,6 +37,8 @@ class RPN
         void div( void );
 
     private:
+        RPN( void );
+        
         std::string _str;
         std::stack<long int> _s;
 };

@@ -6,19 +6,18 @@
 /*   By: crisfern <crisfern@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/06 15:06:25 by crisfern          #+#    #+#             */
-/*   Updated: 2023/10/06 15:06:26 by crisfern         ###   ########.fr       */
+/*   Updated: 2023/10/16 11:54:25 by crisfern         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "RPN.hpp"
 
-RPN::RPN( void ): _str("")
+RPN::RPN( void )
 {}
 
-RPN::RPN( std::string str ): _str(str)
+RPN::RPN( std::string const &str ): _str(str)
 {
-    int i = 0;
-    int n = 0;
+    unsigned long int i = 0;
 
     if (_str.empty())
             throw("Error");
@@ -26,10 +25,11 @@ RPN::RPN( std::string str ): _str(str)
     {
         if (isdigit(_str[i]))
         {
-            if (++n >= 10)
-                throw("Error");
-            this->_s.push(std::atol(&_str[i]));
-            if (this->_s.top() > 2147483647)
+            if ((i > 0) && (_str[i - 1] == '-'))
+                this->_s.push(std::atol(&_str[i - 1]));
+            else
+                this->_s.push(std::atol(&_str[i]));
+            if ((this->_s.top() > INT_MAX) || (this->_s.top() < INT_MIN))
                 throw("Error");
             while (isdigit(_str[i]))
                 i++;
@@ -38,7 +38,14 @@ RPN::RPN( std::string str ): _str(str)
         else if (_str[i] == '+')
             this->add();
         else if (_str[i] == '-')
+        {
+            if ((i < _str.length() - 1) && (isdigit(_str[i + 1])))
+            {
+                i++;
+                continue;
+            }
             this->sub();
+        }
         else if (_str[i] == '*')
             this->mul();
         else if (_str[i] == '/')
@@ -49,7 +56,7 @@ RPN::RPN( std::string str ): _str(str)
     }
 }
 
-RPN::RPN( RPN & cpy )
+RPN::RPN( RPN const &cpy )
 {
     *this = cpy;
 }
@@ -57,7 +64,7 @@ RPN::RPN( RPN & cpy )
 RPN::~RPN( void )
 {}
 
-RPN & RPN::operator=( RPN & asg )
+RPN & RPN::operator=( RPN const &asg )
 {
     std::stack<long int> aux = asg.getStack();
 
@@ -99,7 +106,7 @@ void RPN::add( void )
     long int b = this->_s.top();
     this->_s.pop();
     sum = b + a;
-    if (sum > 2147483647)
+    if ((sum > INT_MAX) || (sum < INT_MIN))
         throw("Error");
     this->_s.push(sum);
 }
@@ -115,7 +122,7 @@ void RPN::sub( void )
     long int b = this->_s.top();
     this->_s.pop();
     sub = b - a;
-    if (sub < -2147483648)
+    if ((sub > INT_MAX) || (sub < INT_MIN))
         throw("Error");
     this->_s.push(sub);
 }
@@ -131,7 +138,7 @@ void RPN::mul( void )
     long int b = this->_s.top();
     this->_s.pop();
     mul = b * a;
-    if (mul > 2147483647)
+    if ((mul > INT_MAX) || (mul < INT_MIN))
         throw("Error");
     this->_s.push(mul);
 }
