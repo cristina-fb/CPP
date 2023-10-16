@@ -6,7 +6,7 @@
 /*   By: crisfern <crisfern@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/06 15:06:29 by crisfern          #+#    #+#             */
-/*   Updated: 2023/10/16 11:02:54 by crisfern         ###   ########.fr       */
+/*   Updated: 2023/10/16 17:25:02 by crisfern         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@
 # include <stack>
 # include <string>
 # include <limits>
-#endif
 
 class RPN
 {
@@ -42,3 +41,4 @@ class RPN
         std::string _str;
         std::stack<long int> _s;
 };
+#endif

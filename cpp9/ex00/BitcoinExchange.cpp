@@ -6,7 +6,7 @@
 /*   By: crisfern <crisfern@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/06 15:05:47 by crisfern          #+#    #+#             */
-/*   Updated: 2023/10/16 16:23:54 by crisfern         ###   ########.fr       */
+/*   Updated: 2023/10/16 17:18:15 by crisfern         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,7 @@ BitcoinExchange::BitcoinExchange( void )
             continue ;
         Date * date = new Date(dstr);
         str = spaceTrim(line.substr(pos+1));
-        if (str.empty() || isSpacesString(str) || !isStringDigitFloat(str, str.length()))
+        if (str.empty() || isSpacesString(str) || !isStringDigitFloat(str, str.length()) || !date->isValid)
         {
             delete date;
             continue;
@@ -106,7 +106,7 @@ BitcoinExchange::BitcoinExchange( std::string dbfilename )
             continue ;
         Date * date = new Date(dstr);
         str = spaceTrim(line.substr(pos+1));
-        if (str.empty() || isSpacesString(str) || !isStringDigitFloat(str, str.length()))
+        if (str.empty() || isSpacesString(str) || !isStringDigitFloat(str, str.length()) || !date->isValid)
         {
             delete date;
             continue;
@@ -145,18 +145,20 @@ double BitcoinExchange::searchDateValue( Date date )
 {
     std::map<Date *, double>::iterator it;
 
-    for (it = this->data.begin(); it != this->data.end(); ++it)
+    if (this->data.size() > 0)
     {
-        if (it->first->dstr > date.dstr)
+        for (it = this->data.begin(); it != this->data.end(); ++it)
         {
-            if (it == this->data.begin())
-                return 0;
-            return (--it)->second;
+            if (it->first->dstr > date.dstr)
+            {
+                if (it == this->data.begin())
+                    return 0;
+                return (--it)->second;
+            }
         }
-        else if (it->first->dstr == date.dstr)
-            return it->second;
+        return (--it)->second;
     }
-    return (--it)->second;
+    return 0;
 }
 
 void BitcoinExchange::printInputResult( std::string filename )

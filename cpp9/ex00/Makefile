@@ -6,7 +6,7 @@
 #    By: crisfern <crisfern@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/09 16:33:18 by crisfern          #+#    #+#              #
-#    Updated: 2023/10/16 16:14:37 by crisfern         ###   ########.fr        #
+#    Updated: 2023/10/16 17:30:24 by crisfern         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -32,4 +32,4 @@ fclean: clean
 
 re: fclean $(NAME)
 
-.phony: fclean clean re
+.phony: all fclean clean re
