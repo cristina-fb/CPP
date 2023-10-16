@@ -6,7 +6,7 @@
 /*   By: crisfern <crisfern@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/06 15:06:49 by crisfern          #+#    #+#             */
-/*   Updated: 2023/10/06 15:06:52 by crisfern         ###   ########.fr       */
+/*   Updated: 2023/10/16 15:01:21 by crisfern         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,64 +56,6 @@ static bool isSorted_lst( std::list<int> lst )
         it--;
     }
     return (true);
-}
-
-static std::vector<int> jacobsthal_vct( int max )
-{
-    std::vector<int> vct;
-    int n = 0, value = 0, last = 1;
-
-    while (1)
-    {
-        value *= 2;
-        if ((n % 2) && n)
-            value--;
-        else
-            value++;
-        if ((value >= max) && (!value || (value == 1)))
-            break;
-        if (value >= max)
-            value = max;
-        if (value > 1)
-        {
-            for (int loop = value; loop > last; loop--)
-                vct.push_back(loop);
-            if (value >= max)
-                break;
-        }
-        last = value;
-        n++;
-    }
-    return (vct);
-}
-
-static std::list<int> jacobsthal_lst( int max )
-{
-    std::list<int> lst;
-    int n = 0, value = 0, last = 1;
-
-    while (1)
-    {
-        value *= 2;
-        if ((n % 2) && n)
-            value--;
-        else
-            value++;
-        if ((value >= max) && (!value || (value == 1)))
-            break;
-        if (value >= max)
-            value = max;
-        if (value > 1)
-        {
-            for (int loop = value; loop > last; loop--)
-                lst.push_back(loop);
-            if (value >= max)
-                break;
-        }
-        last = value;
-        n++;
-    }
-    return (lst);
 }
 
 static int binarySearch_vct( std::vector<int> vct, int value )
@@ -169,11 +111,9 @@ PmergeMe::PmergeMe( char **argv, int argc, int opt )
                 continue ;
             if (!isDigitString(argv[i]))
                 throw("Error");
-            if (std::atol(argv[i]) > 2147483647)
+            if (std::atol(argv[i]) > INT_MAX)
                 throw("Error");
             this->_lst.push_back(std::atoi(argv[i]));
-            if (std::count(this->_lst.begin(), this->_lst.end(), atoi(argv[i])) > 1)
-                throw("Error");
         }
         this->_lst = this->sort_lst(this->_lst);
     }
@@ -185,17 +125,15 @@ PmergeMe::PmergeMe( char **argv, int argc, int opt )
                 continue ;
             if (!isDigitString(argv[i]))
                 throw("Error");
-            if (std::atol(argv[i]) > 2147483647)
+            if (std::atol(argv[i]) > INT_MAX)
                 throw("Error");
             this->_vct.push_back(atoi(argv[i]));
-            if (std::count(this->_vct.begin(), this->_vct.end(), atoi(argv[i])) > 1)
-                throw("Error");
         }
         this->_vct = this->sort_vct(this->_vct);
     }
 }
 
-PmergeMe::PmergeMe( PmergeMe & cpy )
+PmergeMe::PmergeMe( PmergeMe const &cpy )
 {
     *this = cpy;
 }
@@ -207,7 +145,7 @@ PmergeMe::~PmergeMe( void )
 /*             METHODS            */
 /* ############################## */
 
-PmergeMe & PmergeMe::operator=( PmergeMe & asg )
+PmergeMe & PmergeMe::operator=( PmergeMe const &asg )
 {
     if (this != &asg)
     {
@@ -234,12 +172,12 @@ std::vector<int> PmergeMe::get_vct() const
 
 std::list<int> PmergeMe::sort_lst( std::list<int> init )
 {
-    std::list<int> main, pend, ret, order;
-    std::list<int>::iterator itm, itp, itr, id1, id2, id3;
+    std::list<int> main, pend, ret;
+    std::list<int>::iterator itr;
+    int index = 0;
 
     if (isSorted_lst(init))
         return (init);
-    // DIVIDE INTO 2 LISTS
     for (std::list<int>::iterator it = init.begin(); it != init.end(); it++)
     {
         if (++it == init.end())
@@ -255,51 +193,28 @@ std::list<int> PmergeMe::sort_lst( std::list<int> init )
             pend.push_back(*(++it));
         }
     }
-    // SORT MAIN LIST AND REORGANIZE PEND LIST
     if (main.size() > 1)
-    {
         ret = this->sort_lst(main);
-        itm = main.begin();
-        for (std::list<int>::iterator itr = ret.begin(); itr != ret.end(); itr++)
-        {
-            if (*itr != *itm)
-            {
-                id1 = pend.begin();
-                id2 = pend.begin();
-                id3 = std::find(main.begin(), main.end(), *itr);
-                std::advance(id1, std::distance(main.begin(), itm));
-                std::advance(id2, std::distance(main.begin(), id3));
-                std::iter_swap(id1, id2);
-                std::iter_swap(itm, id3);
-            }
-            itm++;
-        }
-    }
     else
         ret = main;
-    // INSERT PEND ELEMENTS INTO RET LIST USING JACOBSTHAL ORDER
-    order = jacobsthal_lst(pend.size());
-    ret.push_front(*pend.begin());
-    for (std::list<int>::iterator it = order.begin(); it != order.end(); it++)
+    for (std::list<int>::iterator it = pend.begin(); it != pend.end(); it++)
     {
-        itp = pend.begin();
         itr = ret.begin();
-        std::advance(itp, (*it) - 1);
-        int index = binarySearch_lst(ret, *itp);
+        index = binarySearch_lst(ret, *it);
         std::advance(itr, index);
-        ret.insert(itr, *itp);
+        ret.insert(itr, *it);
     }
     return (ret);
 }
 
 std::vector<int> PmergeMe::sort_vct( std::vector<int> init )
 {
-    std::vector<int> main, pend, ret, order;
-    std::vector<int>::iterator itm, itp, itr, id1, id2, id3;
+    std::vector<int> main, pend, ret;
+    std::vector<int>::iterator itr;
+    int index = 0;
 
     if (isSorted_vct(init))
         return (init);
-    // DIVIDE INTO 2 LISTS
     for (std::vector<int>::iterator it = init.begin(); it != init.end(); it++)
     {
         if (++it == init.end())
@@ -315,39 +230,16 @@ std::vector<int> PmergeMe::sort_vct( std::vector<int> init )
             pend.push_back(*(++it));
         }
     }
-    // SORT MAIN LIST AND REORGANIZE PEND LIST
     if (main.size() > 1)
-    {
         ret = this->sort_vct(main);
-        itm = main.begin();
-        for (std::vector<int>::iterator itr = ret.begin(); itr != ret.end(); itr++)
-        {
-            if (*itr != *itm)
-            {
-                id1 = pend.begin();
-                id2 = pend.begin();
-                id3 = std::find(main.begin(), main.end(), *itr);
-                std::advance(id1, std::distance(main.begin(), itm));
-                std::advance(id2, std::distance(main.begin(), id3));
-                std::iter_swap(id1, id2);
-                std::iter_swap(itm, id3);
-            }
-            itm++;
-        }
-    }
     else
         ret = main;
-    // INSERT PEND ELEMENTS INTO RET LIST USING JACOBSTHAL ORDER
-    order = jacobsthal_vct(pend.size());
-    ret.insert(ret.begin(), *pend.begin());
-    for (std::vector<int>::iterator it = order.begin(); it != order.end(); it++)
+    for (std::vector<int>::iterator it = pend.begin(); it != pend.end(); it++)
     {
-        itp = pend.begin();
         itr = ret.begin();
-        std::advance(itp, (*it) - 1);
-        int index = binarySearch_vct(ret, *itp);
+        index = binarySearch_vct(ret, *it);
         std::advance(itr, index);
-        ret.insert(itr, *itp);
+        ret.insert(itr, *it);
     }
     return (ret);
 }

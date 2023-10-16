@@ -6,7 +6,7 @@
 /*   By: crisfern <crisfern@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/06 15:07:22 by crisfern          #+#    #+#             */
-/*   Updated: 2023/10/06 15:07:24 by crisfern         ###   ########.fr       */
+/*   Updated: 2023/10/16 12:08:15 by crisfern         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,16 +16,16 @@
 # include <algorithm>
 # include <list>
 # include <vector>
+# include <limits>
 
 class PmergeMe
 {
     public:
-        PmergeMe( void );
         PmergeMe( char **argv, int argc, int opt );
-        PmergeMe( PmergeMe & cpy );
+        PmergeMe( PmergeMe const &cpy );
         ~PmergeMe( void );
 
-        PmergeMe & operator=( PmergeMe & asg );
+        PmergeMe & operator=( PmergeMe const &asg );
         std::list<int> get_lst() const;
         std::vector<int> get_vct() const;
 
@@ -35,6 +35,8 @@ class PmergeMe
         void printVector( void );
     
     private:
+        PmergeMe( void );
+        
         std::list<int> _lst;
         std::vector<int> _vct;
 };
