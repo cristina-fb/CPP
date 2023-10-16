@@ -6,7 +6,7 @@
 /*   By: crisfern <crisfern@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/06 15:05:38 by crisfern          #+#    #+#             */
-/*   Updated: 2023/10/06 15:05:39 by crisfern         ###   ########.fr       */
+/*   Updated: 2023/10/16 16:20:26 by crisfern         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ static bool isStringDigit(std::string str, int n)
 Date::Date( void ): year(0), month(0), day(0), isValid(0)
 {}
 
-Date::Date( std::string str ): year(0), month(0), day(0), isValid(0)
+Date::Date( std::string str ): year(0), month(0), day(0), isValid(0), dstr(str)
 {
     int pos;
     pos = str.find('-'); 
@@ -55,19 +55,6 @@ Date::Date( Date & cpy )
 Date::~Date( void )
 {}
 
-bool Date::dateBefore( Date date )
-{
-    if ((this->year == date.year) && (this->month == date.month) && (this->day == date.day))
-        return false;
-    if (this->year < date.year)
-        return false;
-    if (this->month < date.month)
-        return false;
-    if (this->day < date.day)
-        return false;
-    return true;
-}
-
 Date & Date::operator=( Date & asg )
 {
     if (this != &asg)
@@ -76,6 +63,7 @@ Date & Date::operator=( Date & asg )
         this->month = asg.month;
         this->day = asg.day;
         this->isValid = asg.isValid;
+        this->dstr = asg.dstr;
     }
     return *this;
 }

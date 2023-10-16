@@ -6,7 +6,7 @@
 /*   By: crisfern <crisfern@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/06 15:05:27 by crisfern          #+#    #+#             */
-/*   Updated: 2023/10/06 15:05:30 by crisfern         ###   ########.fr       */
+/*   Updated: 2023/10/16 16:27:26 by crisfern         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,16 +31,23 @@ int main(int argc, char **argv)
     {
         try
         {
-            BitcoinExchange *data = new BitcoinExchange();
-            BitcoinExchange a(*data);
-            delete data;
-            a.printInputResult(argv[1]);
+            if (argc == 2)
+            {
+                BitcoinExchange *data = new BitcoinExchange();
+                data->printInputResult(argv[1]);
+                delete data;
+            }
+            else
+            {
+                BitcoinExchange *data = new BitcoinExchange(argv[2]);
+                data->printInputResult(argv[1]);
+                delete data;
+            }
         }
         catch(const char * exc)
         {
             std::cerr << exc << std::endl;;
         }
-        
     }
     return (0); 
 }

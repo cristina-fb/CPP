@@ -6,7 +6,7 @@
 /*   By: crisfern <crisfern@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/06 15:05:47 by crisfern          #+#    #+#             */
-/*   Updated: 2023/10/06 15:05:48 by crisfern         ###   ########.fr       */
+/*   Updated: 2023/10/16 16:23:54 by crisfern         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ static bool isSpacesString( std::string str )
 {
     for (unsigned long i = 0; i < str.length(); i++)
     {
-        if ((str[i] != ' ') && (str[i] != '\f') && (str[i] != '\n') && (str[i] != '\r') && (str[i] != '\t') && (str[i] != '\v'))
+        if (!isspace(str[i]))
             return false;
     }
     return true;
@@ -62,27 +62,57 @@ BitcoinExchange::BitcoinExchange( void )
         throw("Error: could not open file.");
     for(std::string line; std::getline(dataStream, line);)
     {
-        //linea vacia o con espacios?
+        if (isSpacesString(line) || line.empty())
+            continue ;
         pos = line.find(',');
         if (pos == -1)
             continue ;
         dstr = spaceTrim(line.substr(0, pos));
-        try
+        if (isSpacesString(dstr) || dstr.empty())
+            continue ;
+        Date * date = new Date(dstr);
+        str = spaceTrim(line.substr(pos+1));
+        if (str.empty() || isSpacesString(str) || !isStringDigitFloat(str, str.length()))
         {
-            Date * date = new Date(dstr); //dstr vacia?
-            str = spaceTrim(line.substr(pos+1));
-            if (str.empty() || isSpacesString(str) || !isStringDigitFloat(str, str.length()))
-            {
-                delete date;
-                continue;
-            }
-            n = std::atof(str.c_str());
-            this->data.insert(std::pair<Date *, double>(date, n));
+            delete date;
+            continue;
         }
-        catch(const std::exception& e)
+        n = std::atof(str.c_str());
+        this->data.insert(std::pair<Date *, double>(date, n));
+    }
+    dataStream.close();
+}
+
+BitcoinExchange::BitcoinExchange( std::string dbfilename )
+{
+    std::ifstream dataStream;
+    std::string str;
+    std::string dstr;
+    int pos;
+    double n;
+
+    dataStream.open(dbfilename);
+    if (!dataStream)
+        throw("Error: could not open file.");
+    for(std::string line; std::getline(dataStream, line);)
+    {
+        if (isSpacesString(line) || line.empty())
+            continue ;
+        pos = line.find(',');
+        if (pos == -1)
+            continue ;
+        dstr = spaceTrim(line.substr(0, pos));
+        if (isSpacesString(dstr) || dstr.empty())
+            continue ;
+        Date * date = new Date(dstr);
+        str = spaceTrim(line.substr(pos+1));
+        if (str.empty() || isSpacesString(str) || !isStringDigitFloat(str, str.length()))
         {
-            std::cerr << e.what() << '\n';
+            delete date;
+            continue;
         }
+        n = std::atof(str.c_str());
+        this->data.insert(std::pair<Date *, double>(date, n));
     }
     dataStream.close();
 }
@@ -117,12 +147,14 @@ double BitcoinExchange::searchDateValue( Date date )
 
     for (it = this->data.begin(); it != this->data.end(); ++it)
     {
-        if (it->first->dateBefore(date))
+        if (it->first->dstr > date.dstr)
         {
             if (it == this->data.begin())
                 return 0;
             return (--it)->second;
         }
+        else if (it->first->dstr == date.dstr)
+            return it->second;
     }
     return (--it)->second;
 }
@@ -149,20 +181,25 @@ void BitcoinExchange::printInputResult( std::string filename )
         else
         {
             dstr = spaceTrim(line.substr(0, pos));
-            Date fdate(dstr);
-            if (fdate.isValid)
+            if (isSpacesString(dstr) || dstr.empty())
+                std::cout << E1 << " => " << line << std::endl;
+            else
             {
-                str = spaceTrim(line.substr(pos+1));
-                n = std::atof(str.c_str());
-                if (!isStringDigitFloat(str.c_str(), str.length()) || (n < 0) || str.empty())
-                    std::cout << E2 << std::endl;
-                else if (n > 1000)
-                    std::cout << E3 << std::endl;
-                else
-                    std::cout << dstr << " => " << n << " = " << n * this->searchDateValue(fdate) << std::endl;
+                Date fdate(dstr);
+                if (fdate.isValid)
+                {
+                    str = spaceTrim(line.substr(pos+1));
+                    n = std::atof(str.c_str());
+                    if (!isStringDigitFloat(str.c_str(), str.length()) || (n < 0) || str.empty() || isSpacesString(str))
+                        std::cout << E2 << std::endl;
+                    else if (n > 1000)
+                        std::cout << E3 << std::endl;
+                    else
+                        std::cout << dstr << " => " << n << " = " << n * this->searchDateValue(fdate) << std::endl;
+                }
+                else if (first)
+                    std::cout << E1 << " => " << dstr << std::endl;
             }
-            else if (first)
-                std::cout << E1 << " => " << dstr << std::endl;
         }
         first++;
     }

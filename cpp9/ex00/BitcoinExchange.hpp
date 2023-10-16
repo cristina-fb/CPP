@@ -6,7 +6,7 @@
 /*   By: crisfern <crisfern@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/06 15:05:51 by crisfern          #+#    #+#             */
-/*   Updated: 2023/10/06 15:05:52 by crisfern         ###   ########.fr       */
+/*   Updated: 2023/10/16 16:22:56 by crisfern         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ class BitcoinExchange
 {
     public:
         BitcoinExchange( void );
+        BitcoinExchange( std::string dbfilename );
         BitcoinExchange( BitcoinExchange & cpy );
         ~BitcoinExchange( void );
         

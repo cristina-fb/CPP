@@ -6,7 +6,7 @@
 /*   By: crisfern <crisfern@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/06 15:05:42 by crisfern          #+#    #+#             */
-/*   Updated: 2023/10/06 15:05:44 by crisfern         ###   ########.fr       */
+/*   Updated: 2023/10/16 16:15:02 by crisfern         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,17 +17,19 @@
 class Date
 {
     public:
-        Date( void );
         Date( std::string str );
         Date( Date & cpy );
         ~Date( void );
 
-        bool dateBefore( Date date );
         Date & operator=( Date & asg );
 
         int year;
         int month;
         int day;
         bool isValid;
+        std::string dstr;
+
+    private:
+        Date( void );
 };
 #endif

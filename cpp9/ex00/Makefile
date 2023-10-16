@@ -6,14 +6,13 @@
 #    By: crisfern <crisfern@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/09 16:33:18 by crisfern          #+#    #+#              #
-#    Updated: 2023/10/06 15:06:00 by crisfern         ###   ########.fr        #
+#    Updated: 2023/10/16 16:14:37 by crisfern         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 CXX = clang++
 CXXFLAGS = -Wall -Werror -Wextra -std=c++98 -pedantic
 NAME = btc
-HEADER = BitcoinExchange.hpp
 SRC = main.cpp BitcoinExchange.cpp Date.cpp
 OBJ = $(SRC:.cpp=.o)
 
@@ -22,7 +21,7 @@ all : $(NAME)
 $(NAME): $(OBJ)
 	$(CXX) $(CXXFLAGS) $(OBJ) -o $(NAME)
 
-%.o: %.cpp $(HEADER)
+%.o: %.cpp %.hpp
 	$(CXX) $(CXXFLAGS) -c $<
 
 clean:
